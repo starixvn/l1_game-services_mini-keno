@@ -13,6 +13,7 @@ export default class MultipleGamesApp extends Core.BaseGameApp {
                 definition,
                 new Core.GameData(definition.durations.wholeRound)
             );
+
             await this.startGame(container);
         });
     }
