@@ -81,7 +81,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoMini_cuoc"),
         },
         generateResult: () => generateResult(10, 40),
-        settle: SettlementRules.full,
+        settle: SettlementRules.mini,
     },
     {
         id: 15,
@@ -100,7 +100,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoMini2_cuoc"),
         },
         generateResult: () => generateResult(10, 40),
-        settle: SettlementRules.full,
+        settle: SettlementRules.mini,
     },
     {
         id: 19,
