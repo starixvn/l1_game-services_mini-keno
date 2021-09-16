@@ -11,6 +11,7 @@ const schema = new mongoose.Schema({
 
     memberId: { type: Number },
     siteId: { type: String },
+    freeBet: { type: Boolean },
 });
 
 export default (modelName) => {
