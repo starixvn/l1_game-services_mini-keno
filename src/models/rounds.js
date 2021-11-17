@@ -20,6 +20,7 @@ const schema = new mongoose.Schema({
     result: { type: [Number], required: true },
     settlementResult: settlementResultSchema,
     time: { type: Date, default: new Date() },
+    exchangeRateId: { type: Number, require: true },
 });
 
 export default (modelName) => {
