@@ -6,6 +6,11 @@ import generateResult from "./shuffleNumbers";
 
 const choices = ["big", "small", "odd", "even", "gold", "wood", "water", "fire", "earth"];
 const choicesMapper = { big: 1, small: 2, odd: 3, even: 4, gold: 5, wood: 6, water: 7, fire: 6, earth: 7 };
+const hedgeBetGroups = [
+    ["big", "small"],
+    ["even", "odd"],
+];
+
 export default [
     {
         id: 16,
@@ -17,6 +22,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoEast_phien"),
@@ -36,6 +42,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoMax_phien"),
@@ -55,6 +62,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoMax2_phien"),
@@ -74,6 +82,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoMini_phien"),
@@ -93,6 +102,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoMini2_phien"),
@@ -112,6 +122,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoNorth_phien"),
@@ -131,6 +142,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoSouth_phien"),
@@ -150,6 +162,7 @@ export default [
         },
         choices,
         choicesMapper,
+        hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
             roundsRepository: getRoundRepository("KenoWest_phien"),
