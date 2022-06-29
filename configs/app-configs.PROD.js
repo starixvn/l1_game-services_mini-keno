@@ -10,18 +10,19 @@ export default {
         },
         useAuthenticate: true,
         requestTimeout: 10000,
-        placeBetTimeout: 4500,
+        placeBetTimeout: 4000,
         enableApiLogs: true,
     },
-    mainServerApiSettings: {
-        url: "http://l1_game_server_prod:5000/api",
-        auth: {
-            url: "http://l1_auth_api_prod:5000",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
+    authenticateSettings: {
+        url: "http://l1_auth_api_prod:5000",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
         requestTimeout: 10000,
         useAuthenticate: true,
+        audiences: ["api", "admin-api"],
+    },
+    userServiceSettings: {
+        url: "http://l1_user_service_prod:5000",
     },
     socketOptions: {
         pingInterval: 60 * 1000,
@@ -43,9 +44,6 @@ export default {
         sentryUrl: "http://58fc00e79ab34a3bab04a79038760cb8@10.99.99.187:803/8",
         logIdentifier: "minikeno",
         env: "PROD",
-    },
-    authenticateSettings: {
-        audiences: ["api", "admin-api"],
     },
     adminSecretKey: "asWDEer4yGdgsdqR4uqmKQZgh",
     enableCorsWs: true,
@@ -71,4 +69,5 @@ export default {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
+    enableMsgpackParser: true,
 };
