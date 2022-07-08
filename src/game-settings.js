@@ -176,7 +176,7 @@ export default [
         id: 52,
         name: "MegaKeno",
         durations: {
-            wholeRound: 45,
+            wholeRound: 46,
             placingBets: 36,
             lockingBet: 5,
         },
@@ -196,8 +196,8 @@ export default [
         id: 53,
         name: "MegaKeno2",
         durations: {
-            wholeRound: 30,
-            placingBets: 21,
+            wholeRound: 40,
+            placingBets: 30,
             lockingBet: 5,
         },
         choices,
