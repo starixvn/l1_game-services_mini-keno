@@ -1,4 +1,4 @@
-import SettlementRules from "../settlementRules";
+import SettlementRules from "../../src/settlementRules";
 
 describe("settlementRules", () => {
     describe("full", () => {

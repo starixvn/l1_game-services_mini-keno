@@ -1,4 +1,4 @@
-import generateResult from "../shuffleNumbers";
+import generateResult from "../../src/shuffleNumbers";
 
 const chanceStub = {
     naturalResult: 10,

@@ -1,6 +1,6 @@
-import gameSettings from "../game-settings";
+import gameSettings from "../../src/game-settings";
 
-jest.mock("../shuffleNumbers", () => {
+jest.mock("../../src/shuffleNumbers", () => {
     return function (min, max) {
         return `${min}_${max}`;
     };
@@ -19,6 +19,8 @@ describe("game-settings", () => {
                 "KenoNorth_20_80",
                 "KenoSouth_20_80",
                 "KenoWest_20_80",
+                "MegaKeno_20_80",
+                "MegaKeno2_20_80",
             ];
 
             // act

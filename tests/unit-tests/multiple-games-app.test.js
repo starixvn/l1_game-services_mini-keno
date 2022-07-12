@@ -1,4 +1,4 @@
-import MultipleGamesApp from "../multiple-games-app";
+import MultipleGamesApp from "../../src/multiple-games-app";
 
 describe("multiple-games-app", () => {
     describe("startGames", () => {

@@ -1,4 +1,4 @@
-import MiniKenoContainerRegistry from "../mini-keno-container-registry";
+import MiniKenoContainerRegistry from "../../src/mini-keno-container-registry";
 import { MultipleGamesContainerRegistry } from "sc-multiple-games-base";
 
 describe("mini-keno-container-registry", () => {

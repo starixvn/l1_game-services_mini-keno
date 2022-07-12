@@ -1,10 +1,10 @@
-import { run } from "../app";
+import { run } from "../../src/app";
 
 const mAppStatus = {
     started: false,
 };
 
-jest.mock("../multiple-games-app", () => {
+jest.mock("../../src/multiple-games-app", () => {
     const mApp = {
         run: () => {},
         startGames: () => {
