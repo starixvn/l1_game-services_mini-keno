@@ -1,7 +1,7 @@
 import { GameClientDriver, normalUser, eventTypes } from "sc-game-service-integration-utils";
 import { socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./init-user-session";
-import gameSettings from "../../src/game-settings";
+import gameSettings from "./stubs/game-settings";
 
 export const settleTest = () => {
     describe("when settle", () => {
@@ -29,7 +29,8 @@ export const settleTest = () => {
                 if (inGameData.remainingTime && !receivedRemainingTime) {
                     receivedRemainingTime = true;
                     setTimeout(() => {
-                        client.emit(eventTypes.bet, { betChoice: "player", amount: 100 });
+                        client.emit(eventTypes.bet, { betChoice: "big", amount: 100 });
+                        console.log("SETTLE BET  { betChoice: big, amount: 100 }");
                     }, getTimeOutToBet(inGameData.remainingTime, gameSettings[0].durations) * 1000);
                 }
             });

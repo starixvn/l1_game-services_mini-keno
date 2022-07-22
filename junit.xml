@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="5" failures="0" errors="0" time="65.445">
-  <testsuite name="signin" errors="0" failures="0" skipped="0" timestamp="2022-07-19T05:51:38" time="65.286" tests="5">
-    <testcase classname="signin should receive signed in response" name="signin should receive signed in response" time="0.085">
+<testsuites name="jest tests" tests="5" failures="0" errors="0" time="57.386">
+  <testsuite name="signin" errors="0" failures="0" skipped="0" timestamp="2022-07-22T08:04:30" time="57.211" tests="5">
+    <testcase classname="signin should receive signed in response" name="signin should receive signed in response" time="0.124">
     </testcase>
-    <testcase classname="when user joins game should return minikeno data" name="when user joins game should return minikeno data" time="0.11">
+    <testcase classname="when user joins game should return minikeno data" name="when user joins game should return minikeno data" time="0.106">
     </testcase>
-    <testcase classname="place bet when place bet in placing bet time should return own bet data" name="place bet when place bet in placing bet time should return own bet data" time="0.18">
+    <testcase classname="place bet when place bet in placing bet time should return own bet data" name="place bet when place bet in placing bet time should return own bet data" time="0.128">
     </testcase>
-    <testcase classname="place bet when place bet NOT in placing bet time should return invalid" name="place bet when place bet NOT in placing bet time should return invalid" time="5.076">
+    <testcase classname="place bet when place bet NOT in placing bet time should return invalid" name="place bet when place bet NOT in placing bet time should return invalid" time="5.086">
     </testcase>
-    <testcase classname="when settle should return settled status data" name="when settle should return settled status data" time="1.517">
+    <testcase classname="when settle should return settled status data" name="when settle should return settled status data" time="21.129">
     </testcase>
   </testsuite>
 </testsuites>

@@ -29,7 +29,7 @@ export default [
             betsRepository: getBetRepository("MegaKeno_ones"),
             betLogsRepository: getBetLogsRepository("MegaKeno_bets"),
         },
-        generateResult: () => generateResult(20, 80),
+        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
     },
 ];
