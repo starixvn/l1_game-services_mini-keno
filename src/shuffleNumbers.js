@@ -48,8 +48,5 @@ const randomModes = {
 
 export default (randomMode, numberOfPicked, numberOfSeeds) => {
     const randomShuffles = randomModes[randomMode] || randomModes[1];
-
-    const result = chance.pickone(randomShuffles)(numberOfPicked, numberOfSeeds);
-
-    return result.sort((pre, next) => pre - next);
+    return chance.pickone(randomShuffles)(numberOfPicked, numberOfSeeds);
 };
