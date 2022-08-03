@@ -30,7 +30,7 @@
         "sc-multiple-games-base": "1.5.3"
     },
     "resolutions": {
-        "sc-game-base": "3.0.4",
+        "sc-game-base": "3.0.6",
         "sc-base-database": "1.10.0"
     },
     "devDependencies": {
