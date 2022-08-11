@@ -48,15 +48,8 @@ export default {
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableCorsWs: false,
     corsUrls: [
-        "http://sit.v-gaming.net",
-        "https://sit.v-gaming.net",
-        "https://sit-admg.v-gaming.net",
-        "http://sitadm.v-gaming.net",
-        "https://sitadm.v-gaming.net",
-        "http://msit.v-gaming.net",
-        "https://msit.v-gaming.net",
-        "https://l2sit.sgamesuat.com",
         "http://l2sit.sgamesuat.com",
+        "https://l2sit.sgamesuat.com",
         "http://l2sitadm.sgamesuat.com",
         "https://l2sitadm.sgamesuat.com",
         "http://l2sitm.sgamesuat.com",
@@ -66,5 +59,5 @@ export default {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
-	enableMsgpackParser: true,
+    enableMsgpackParser: true,
 };
