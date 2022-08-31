@@ -60,7 +60,7 @@ const createRounds = async () => {
 };
 
 const createUserBetData = async () => {
-    const userId = await getUserId(normalUser.memberId);
+    const userId = await getUserId(normalUser.playerId);
     const betData = userBetData(userId);
     return bets("megakeno_bets").insertMany(betData);
 };
