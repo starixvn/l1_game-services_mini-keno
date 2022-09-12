@@ -45,5 +45,47 @@ export const settleTest = () => {
                 }
             });
         });
+
+        it("should return settled finish data and hashResult with rawValue", (done) => {
+            // Arrange & Act
+            const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
+            client.handleSignedInEvent(() => {
+                client.sendInGameEvent();
+            });
+
+            // Assert
+            client.on(socketOptions.gameName, (data) => {
+                if (data.finish && data.resultHash) {
+                    expect(data.resultHash.rawValue).not.toBeUndefined();
+
+                    client.close();
+                    done();
+                }
+            });
+        });
+
+        it("should return resultHash at start placingBet time", (done) => {
+            // Arrange & Act
+            const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
+
+            // Assert
+            let startTime = new Date();
+            client.on(socketOptions.gameName, (data) => {
+                if (data.remainingTime && data.remainingTime === gameSettings[0].durations.wholeRound) {
+                    startTime = new Date();
+                }
+
+                if (data.resultHash) {
+                    let endTime = new Date();
+                    expect(data.resultHash.hashValue).not.toBeUndefined();
+                    expect(Math.round((endTime - startTime) / 1000)).toEqual(
+                        gameSettings[0].durations.wholeRound - gameSettings[0].durations.placingBets - 1
+                    );
+
+                    client.close();
+                    done();
+                }
+            });
+        });
     });
 };

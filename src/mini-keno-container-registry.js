@@ -16,6 +16,7 @@ export default class MiniKenoContainerRegistry extends MultipleGamesContainerReg
             betsRepository: asValue(repositories.betsRepository),
             betLogsRepository: asValue(repositories.betLogsRepository),
             tempBetsRepository: asValue(repositories.tempBetsRepository),
+            resultsRepository: asValue(repositories.resultsRepository),
         });
     }
 }

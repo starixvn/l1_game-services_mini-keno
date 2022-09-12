@@ -1,8 +1,12 @@
-import getBetLogsRepository from "./models/bet-logs";
-import getBetRepository from "./models/bets";
-import getRoundRepository from "./models/rounds";
+import {
+    rounds as getRoundRepository,
+    betlogs as getBetLogsRepository,
+    bets as getBetRepository,
+    result as getResultRepository,
+} from "./models";
 import SettlementRules from "./settlementRules";
 import generateResult from "./shuffleNumbers";
+import { generateRawResultForHash } from "./result-helper";
 
 const choices = ["big", "small", "odd", "even", "gold", "wood", "water", "fire", "earth"];
 const choicesMapper = { big: 1, small: 2, odd: 3, even: 4, gold: 5, wood: 6, water: 7, fire: 6, earth: 7 };
@@ -28,9 +32,11 @@ export default [
             roundsRepository: getRoundRepository("KenoEast_phien"),
             betsRepository: getBetRepository("KenoEast_one"),
             betLogsRepository: getBetLogsRepository("KenoEast_cuoc"),
+            resultsRepository: getResultRepository("KenoEast_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 12,
@@ -48,9 +54,11 @@ export default [
             roundsRepository: getRoundRepository("KenoMax_phien"),
             betsRepository: getBetRepository("KenoMax_one"),
             betLogsRepository: getBetLogsRepository("KenoMax_cuoc"),
+            resultsRepository: getResultRepository("KenoMax_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 13,
@@ -68,9 +76,11 @@ export default [
             roundsRepository: getRoundRepository("KenoMax2_phien"),
             betsRepository: getBetRepository("KenoMax2_one"),
             betLogsRepository: getBetLogsRepository("KenoMax2_cuoc"),
+            resultsRepository: getResultRepository("KenoMax2_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 14,
@@ -88,9 +98,11 @@ export default [
             roundsRepository: getRoundRepository("KenoMini_phien"),
             betsRepository: getBetRepository("KenoMini_one"),
             betLogsRepository: getBetLogsRepository("KenoMini_cuoc"),
+            resultsRepository: getResultRepository("KenoMini_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 10, 40),
         settle: SettlementRules.mini,
+        generateRawResultForHash,
     },
     {
         id: 15,
@@ -108,9 +120,11 @@ export default [
             roundsRepository: getRoundRepository("KenoMini2_phien"),
             betsRepository: getBetRepository("KenoMini2_one"),
             betLogsRepository: getBetLogsRepository("KenoMini2_cuoc"),
+            resultsRepository: getResultRepository("KenoMini2_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 10, 40),
         settle: SettlementRules.mini,
+        generateRawResultForHash,
     },
     {
         id: 19,
@@ -128,9 +142,11 @@ export default [
             roundsRepository: getRoundRepository("KenoNorth_phien"),
             betsRepository: getBetRepository("KenoNorth_one"),
             betLogsRepository: getBetLogsRepository("KenoNorth_cuoc"),
+            resultsRepository: getResultRepository("KenoNorth_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 18,
@@ -148,9 +164,11 @@ export default [
             roundsRepository: getRoundRepository("KenoSouth_phien"),
             betsRepository: getBetRepository("KenoSouth_one"),
             betLogsRepository: getBetLogsRepository("KenoSouth_cuoc"),
+            resultsRepository: getResultRepository("KenoSouth_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 17,
@@ -168,9 +186,11 @@ export default [
             roundsRepository: getRoundRepository("KenoWest_phien"),
             betsRepository: getBetRepository("KenoWest_one"),
             betLogsRepository: getBetLogsRepository("KenoWest_cuoc"),
+            resultsRepository: getResultRepository("KenoWest_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 52,
@@ -188,9 +208,11 @@ export default [
             roundsRepository: getRoundRepository("MegaKeno_rounds"),
             betsRepository: getBetRepository("MegaKeno_ones"),
             betLogsRepository: getBetLogsRepository("MegaKeno_bets"),
+            resultsRepository: getResultRepository("MegaKeno_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
     {
         id: 53,
@@ -208,8 +230,10 @@ export default [
             roundsRepository: getRoundRepository("MegaKeno2_rounds"),
             betsRepository: getBetRepository("MegaKeno2_ones"),
             betLogsRepository: getBetLogsRepository("MegaKeno2_bets"),
+            resultsRepository: getResultRepository("MegaKeno2_result"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
+        generateRawResultForHash,
     },
 ];

@@ -8537,7 +8537,7 @@ sc-common@1.8.1:
     mongoose-long "^0.3.0"
     numeral "^2.0.6"
 
-sc-game-base@3.0.2-beta.2, sc-game-base@3.0.4, sc-game-base@3.0.6:
+sc-game-base@3.0.4, sc-game-base@3.0.6:
   version "3.0.6"
   resolved "http://npm.lumigame.com/sc-game-base/-/sc-game-base-3.0.6.tgz#2a1418ff36eb81f5d228552378b3d4845a36cbfe"
   integrity sha512-yqeWmj+bvg6bzjad/GGb90Bm65prU/OzVtQCy0ivSD5n1NqD+HPw8CbEPGpY9uZ84ltnZwBkesCRtz4xZrzd8A==
@@ -8561,22 +8561,22 @@ sc-game-base@3.0.2-beta.2, sc-game-base@3.0.4, sc-game-base@3.0.6:
     socket.io-msgpack-parser "^3.0.1"
     socket.io-prom-metrics "^1.0.3"
 
-sc-game-service-integration-utils@1.2.3-beta.2:
-  version "1.2.3-beta.2"
-  resolved "http://npm.lumigame.com/sc-game-service-integration-utils/-/sc-game-service-integration-utils-1.2.3-beta.2.tgz#2d334d29a1404bda390e9901b4a41f0c46717d62"
-  integrity sha512-0Q9UqPEjBAXBAtYfEOcveV8ovHnXrLMH0rjVSyxKcNEObcNJEeXFtv0fFc8MM3LrnVhlUDUht1zSlIv0HMbPLg==
+sc-game-service-integration-utils@1.2.4:
+  version "1.2.4"
+  resolved "http://npm.lumigame.com/sc-game-service-integration-utils/-/sc-game-service-integration-utils-1.2.4.tgz#dd3290294ec2aac2542f9e2d0f3b4fa004458381"
+  integrity sha512-EeEjgEtYSYfR5RnzDe1qcizkXH7II2L/ta1FaDSWgiDUFh6aVMqz7wtSReuHqPOoujas4AjZRoGygczpl3MxWA==
   dependencies:
     lodash.matches "^4.6.0"
     nock "^13.2.1"
-    sc-game-base "3.0.2-beta.2"
+    sc-game-base "3.0.4"
     socket.io-client "^4.4.0"
 
-sc-multiple-games-base@1.5.3:
-  version "1.5.3"
-  resolved "http://npm.lumigame.com/sc-multiple-games-base/-/sc-multiple-games-base-1.5.3.tgz#ccde597e24bcc6dcbd35c692a73a482355077ecc"
-  integrity sha512-BweNL9JaJ7Ps21V0/eBjJhVSU4JVt/5RCCw3jIyvLQqx4Rjx4vlgfUipumvOx7OWRQSZumtsRRWwgcO85XY1xw==
+sc-multiple-games-base@1.7.0:
+  version "1.7.0"
+  resolved "http://npm.lumigame.com/sc-multiple-games-base/-/sc-multiple-games-base-1.7.0.tgz#8ed61306be342d50b2ad8fb304d54eae2e120af3"
+  integrity sha512-MwRjkyljGaJsIdCKxAZJIfmD8cQewmYqj1NvHZ8pHalLodHkBEtmlsUQ/qM1RZb9G+OaHa/rT8OIlhP2Afgd9A==
   dependencies:
-    sc-game-base "3.0.4"
+    sc-game-base "3.0.6"
 
 sc-semantic-release@^1.1.0:
   version "1.2.0"
