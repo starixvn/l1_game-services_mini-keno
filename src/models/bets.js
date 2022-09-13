@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
+const bet = {
     uid: { type: String, required: true },
     name: { type: String, required: true },
 
@@ -21,15 +21,23 @@ const schema = new mongoose.Schema({
     siteId: { type: String },
     freeBet: { type: Boolean },
 
-    currency: { type: String, require: true },
-    rate: { type: Number, require: true },
-
     playerId: { type: Number },
-    operatorId: { type: String, require: true },
     roundId: { type: Number, required: true },
     paid: { type: Boolean, default: false },
-});
-
-export default (modelName) => {
-    return mongoose.model(modelName, schema);
 };
+
+export function bets(modelName) {
+    return mongoose.model(
+        modelName,
+        new mongoose.Schema({
+            ...bet,
+            currency: { type: String, require: true },
+            rate: { type: Number, require: true },
+            operatorId: { type: String, required: false },
+        })
+    );
+}
+
+export function tempBets(modelName) {
+    return mongoose.model(modelName, new mongoose.Schema(bet));
+}
