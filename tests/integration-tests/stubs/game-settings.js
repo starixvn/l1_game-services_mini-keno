@@ -2,6 +2,7 @@ import getBetLogsRepository from "../../../src/models/bet-logs";
 import getBetRepository from "../../../src/models/bets";
 import getRoundRepository from "../../../src/models/rounds";
 import getResultRepository from "../../../src/models/result";
+import getTempBetRepository from "../../../src/models/tmp-bet";
 import SettlementRules from "../../../src/settlementRules";
 import generateResult from "../../../src/shuffleNumbers";
 import { generateRawResultForHash } from "../../../src/result-helper";
@@ -31,6 +32,7 @@ export default [
             betsRepository: getBetRepository("MegaKeno_ones"),
             betLogsRepository: getBetLogsRepository("MegaKeno_bets"),
             resultsRepository: getResultRepository("MegaKeno_result"),
+            tempBetsRepository: getTempBetRepository("MegaKeno_tmpcuoc"),
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,

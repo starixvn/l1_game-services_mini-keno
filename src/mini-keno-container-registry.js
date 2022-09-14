@@ -1,7 +1,7 @@
 import { asValue } from "awilix";
-import { MultipleGamesContainerRegistry } from "sc-multiple-games-base";
+import { MultipleTableGamesContainerRegistry } from "sc-multiple-games-base";
 
-export default class MiniKenoContainerRegistry extends MultipleGamesContainerRegistry {
+export default class MiniKenoContainerRegistry extends MultipleTableGamesContainerRegistry {
     register(appConfigs, definition, gameData) {
         super.register(appConfigs, definition, gameData);
 

@@ -1,4 +1,4 @@
-import { Core } from "sc-game-base";
+import { Table, Core } from "sc-game-base";
 
 import MiniKenoContainerRegistry from "./mini-keno-container-registry";
 
@@ -11,7 +11,7 @@ export default class MultipleGamesApp extends Core.BaseGameApp {
             const container = new MiniKenoContainerRegistry().register(
                 this.appConfigs,
                 definition,
-                new Core.GameData(definition.durations.wholeRound)
+                new Table.TableGameData(definition.durations.wholeRound)
             );
 
             await this.startGame(container);
