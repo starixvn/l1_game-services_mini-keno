@@ -1,4 +1,4 @@
-import { asValue } from "awilix";
+import { asValue, asClass } from "awilix";
 import { MultipleTableGamesContainerRegistry } from "sc-multiple-games-base";
 import Bot from "./crons/bot";
 
