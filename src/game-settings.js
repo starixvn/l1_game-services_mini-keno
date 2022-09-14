@@ -4,7 +4,6 @@ import {
     bets as getBetRepository,
     tempBets as getTempBetRepository,
     result as getResultRepository,
-    tempBets as getTempBetRepository,
 } from "./models";
 import SettlementRules from "./settlementRules";
 import generateResult from "./shuffleNumbers";
