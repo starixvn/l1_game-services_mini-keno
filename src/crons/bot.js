@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { helpers } from "sc-common";
-import { Core, Table } from "sc-game-base";
-
+import { Core, Table, Constants } from "sc-game-base";
 import constants from "../constants";
 
 export default class Bot extends Table.Crons.TableGameBot {
@@ -53,7 +52,7 @@ export default class Bot extends Table.Crons.TableGameBot {
         currentBotIds
             .filter((botId) => !botUsers.some((bot) => bot.id === botId))
             .forEach((botId) => {
-                this.publisher.publishToAllUsersExceptSystem(Systems.Mobi, null, { outgame: { playerId: botId } });
+                this.publisher.publishToAllUsersExceptSystem(Constants.Systems.Mobi, null, { outgame: { playerId: botId } });
 
                 delete this.gameData.players[botId];
                 delete this.botsInRoom[botId];
