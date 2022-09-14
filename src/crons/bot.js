@@ -30,6 +30,36 @@ export default class Bot extends Table.Crons.TableGameBot {
         this.resetAllBets();
     }
 
+    async run() {
+        await this.addRemoveBotsFromOtherGames();
+        await super.run();
+    }
+
+    async addRemoveBotsFromOtherGames() {
+        const currentBotIds = Object.keys(this.botsInRoom);
+        const botUsers = await this.userInfosRepository
+            .find({ type: true, inRoom: true, inGameRoom: "megakeno", disabled: false }, "-_id id name red avatarId type")
+            .lean();
+
+        botUsers
+            .filter((bot) => !currentBotIds.includes(bot.id))
+            .forEach((bot) => {
+                this.resetBot(bot);
+                this.botsInRoom[bot.id] = bot;
+
+                this.addToPlayersAndPublish(bot);
+            });
+
+        currentBotIds
+            .filter((botId) => !botUsers.some((bot) => bot.id === botId))
+            .forEach((botId) => {
+                this.publisher.publishToAllUsersExceptSystem(Systems.Mobi, null, { outgame: { playerId: botId } });
+
+                delete this.gameData.players[botId];
+                delete this.botsInRoom[botId];
+            });
+    }
+
     resetAllBotData() {
         super.resetAllBotData();
         this.resetAllBets();

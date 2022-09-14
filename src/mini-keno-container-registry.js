@@ -1,5 +1,6 @@
 import { asValue } from "awilix";
 import { MultipleTableGamesContainerRegistry } from "sc-multiple-games-base";
+import Bot from "./crons/bot";
 
 export default class MiniKenoContainerRegistry extends MultipleTableGamesContainerRegistry {
     register(appConfigs, definition, gameData) {
@@ -17,6 +18,14 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
             betLogsRepository: asValue(repositories.betLogsRepository),
             tempBetsRepository: asValue(repositories.tempBetsRepository),
             resultsRepository: asValue(repositories.resultsRepository),
+        });
+    }
+
+    registerCrons() {
+        super.registerCrons();
+
+        this.container.register({
+            bot: asClass(Bot).singleton(),
         });
     }
 }
