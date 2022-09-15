@@ -63,6 +63,7 @@ export default {
         "https://sit-adm.sgamesuat.com",
         "http://sitm.sgamesuat.com",
         "https://sitm.sgamesuat.com",
+        "https://l1sitkeno.sgamesuat.com",
     ],
     metrics: {
         enable: true,
