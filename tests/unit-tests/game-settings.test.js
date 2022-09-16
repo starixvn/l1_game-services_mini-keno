@@ -12,8 +12,6 @@ describe("game-settings", () => {
             // arrange
             const expectedValue = [
                 "KenoEast_1_20_80",
-                "KenoMax_1_20_80",
-                "KenoMax2_1_20_80",
                 "KenoMini_1_10_40",
                 "KenoMini2_1_10_40",
                 "KenoNorth_1_20_80",
