@@ -8,6 +8,7 @@ import {
 import SettlementRules from "./settlementRules";
 import generateResult from "./shuffleNumbers";
 import { generateRawResultForHash } from "./result-helper";
+import { allGamesHistoriesModel } from "sc-multiple-games-base";
 
 const choices = ["big", "small", "odd", "even", "gold", "wood", "water", "fire", "earth"];
 const choicesMapper = { big: 1, small: 2, odd: 3, even: 4, gold: 5, wood: 6, water: 7, fire: 6, earth: 7 };
@@ -15,6 +16,8 @@ export const hedgeBetGroups = [
     ["big", "small"],
     ["even", "odd"],
 ];
+
+const allGamesBetsRepository = allGamesHistoriesModel("megakeno_histories");
 
 export default [
     {
@@ -35,6 +38,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoEast_cuoc"),
             resultsRepository: getResultRepository("KenoEast_result"),
             tempBetsRepository: getTempBetRepository("KenoEast_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
@@ -58,6 +62,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoMini_cuoc"),
             resultsRepository: getResultRepository("KenoMini_result"),
             tempBetsRepository: getTempBetRepository("KenoMini_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 10, 40),
         settle: SettlementRules.mini,
@@ -81,6 +86,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoMini2_cuoc"),
             resultsRepository: getResultRepository("KenoMini2_result"),
             tempBetsRepository: getTempBetRepository("KenoMini2_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 10, 40),
         settle: SettlementRules.mini,
@@ -104,6 +110,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoNorth_cuoc"),
             resultsRepository: getResultRepository("KenoNorth_result"),
             tempBetsRepository: getTempBetRepository("KenoNorth_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
@@ -127,6 +134,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoSouth_cuoc"),
             resultsRepository: getResultRepository("KenoSouth_result"),
             tempBetsRepository: getTempBetRepository("KenoSouth_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
@@ -150,6 +158,7 @@ export default [
             betLogsRepository: getBetLogsRepository("KenoWest_cuoc"),
             resultsRepository: getResultRepository("KenoWest_result"),
             tempBetsRepository: getTempBetRepository("KenoWest_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
@@ -173,6 +182,7 @@ export default [
             betLogsRepository: getBetLogsRepository("MegaKeno_bets"),
             resultsRepository: getResultRepository("MegaKeno_result"),
             tempBetsRepository: getTempBetRepository("MegaKeno_tmpbets"),
+            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
@@ -196,6 +206,7 @@ export default [
             betLogsRepository: getBetLogsRepository("MegaKeno2_bets"),
             resultsRepository: getResultRepository("MegaKeno2_result"),
             tempBetsRepository: getTempBetRepository("MegaKeno2_tmpbets"),
+            allGamesBetsRepository
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
