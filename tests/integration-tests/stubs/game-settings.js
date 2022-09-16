@@ -1,8 +1,10 @@
-import getBetLogsRepository from "../../../src/models/bet-logs";
-import getBetRepository from "../../../src/models/bets";
-import getRoundRepository from "../../../src/models/rounds";
-import getResultRepository from "../../../src/models/result";
-import getTempBetRepository from "../../../src/models/tmp-bet";
+import {
+    rounds as getRoundRepository,
+    betlogs as getBetLogsRepository,
+    bets as getBetRepository,
+    tempBets as getTempBetRepository,
+    result as getResultRepository,
+} from "../../../src/models";
 import SettlementRules from "../../../src/settlementRules";
 import generateResult from "../../../src/shuffleNumbers";
 import { generateRawResultForHash } from "../../../src/result-helper";
