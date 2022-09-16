@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Chance from "chance";
 import { helpers } from "sc-common";
 import { Core, Table, Constants } from "sc-game-base";
 import constants from "../constants";
@@ -13,6 +14,8 @@ export default class Bot extends Table.Crons.TableGameBot {
      */
     constructor(definition, gameData, publisher, userInfosRepository, tempBetsRepository) {
         super(definition, gameData, publisher, userInfosRepository, tempBetsRepository);
+
+        this.chance = new Chance();
 
         this.betChoiceRatio = {
             MainOpts: 86, //big | small
@@ -147,7 +150,7 @@ export default class Bot extends Table.Crons.TableGameBot {
     }
 
     getRandomChoiceFromGroup(group) {
-        const randomIndex = (Math.random() * group.length) >> 0;
+        const randomIndex = this.chance.integer({ min: 0, max: group.length - 1 });
 
         return group[randomIndex];
     }
