@@ -1,564 +1,332 @@
-import SettlementRules from "../../src/settlementRules";
+import settlementRules from "../../src/settlementRules";
+import Chance from "chance";
+
+const chance = new Chance();
 
 describe("settlementRules", () => {
     describe("full", () => {
-        const testCases = [
-            {
-                result: [811],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [810],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [210],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: true,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [212],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: true,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [695],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: true,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [696],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: true,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [698],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: true,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [763],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: true,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [764],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [766],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [855],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [856],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: true,
-                    earth: false,
-                },
-            },
-            {
-                result: [858],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: true,
-                    earth: false,
-                },
-            },
-            {
-                result: [923],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: true,
-                    earth: false,
-                },
-            },
-            {
-                result: [924],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: true,
-                },
-            },
-            {
-                result: [926],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: true,
-                },
-            },
-            {
-                result: [1410],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: true,
-                },
-            },
-            {
-                result: [208],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [1412],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-        ];
+        describe("Odd/Even Tests", () => {
+            describe("when total points is even", () => {
+                it.each`
+                    total
+                    ${210}
+                    ${810}
+                    ${400}
+                `("Settlement result with $total points should be even", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
 
-        it.each(testCases)("should return correct value", (testCase) => {
-            // arrange
+                    //Assert
+                    expect(result.even).toBeTrue();
+                });
+            });
 
-            // act
-            const actualValue = SettlementRules.full(testCase.result);
+            describe("when total points is odd", () => {
+                it.each`
+                    total
+                    ${811}
+                    ${1409}
+                    ${555}
+                `("Settlement result with $total points should be odd", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
 
-            //assert
-            expect(actualValue).toStrictEqual(testCase.expectedValue);
+                    //Assert
+                    expect(result.odd).toBeTrue();
+                });
+            });
+        });
+
+        describe("Big/Small Tests", () => {
+            describe("when total points is in (210,810)", () => {
+                // arrange
+                const total = chance.integer({ min: 211, max: 809 });
+
+                it.each`
+                    total
+                    ${210}
+                    ${810}
+                    ${total}
+                `("Settlement result with $total points should be SMALL", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.small).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (811,1410)", () => {
+                // arrange
+                const total = chance.integer({ min: 812, max: 1409 });
+
+                it.each`
+                    total
+                    ${811}
+                    ${1410}
+                    ${total}
+                `("Settlement result with $total points should be BIG", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.big).toBeTrue();
+                });
+            });
+        });
+
+        describe("Elements Tests", () => {
+            describe("when total points is in (210,695)", () => {
+                // arrange
+                const total = chance.integer({ min: 211, max: 694 });
+
+                it.each`
+                    total
+                    ${210}
+                    ${695}
+                    ${total}
+                `("Element result with $total points should be GOLD", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.gold).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (696,763)", () => {
+                // arrange
+                const total = chance.integer({ min: 697, max: 762 });
+
+                it.each`
+                    total
+                    ${696}
+                    ${763}
+                    ${total}
+                `("Element result with $total points should be WOOD", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.wood).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (764,855)", () => {
+                // arrange
+                const total = chance.integer({ min: 765, max: 854 });
+
+                it.each`
+                    total
+                    ${764}
+                    ${855}
+                    ${total}
+                `("Element result with $total points should be WATER", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.water).toBeTrue();
+                });
+            });
+            describe("when total points is in (856,923)", () => {
+                // arrange
+                const total = chance.integer({ min: 857, max: 922 });
+
+                it.each`
+                    total
+                    ${856}
+                    ${923}
+                    ${total}
+                `("Element result with $total points should be FIRE", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.fire).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (924,1410)", () => {
+                // arrange
+                const total = chance.integer({ min: 925, max: 1409 });
+
+                it.each`
+                    total
+                    ${924}
+                    ${1410}
+                    ${total}
+                `("Element result with $total points should be EARTH", ({ total }) => {
+                    //Act
+                    const result = settlementRules.full([total]);
+
+                    //Assert
+                    expect(result.earth).toBeTrue();
+                });
+            });
         });
     });
+
     describe("mini", () => {
-        const testCases = [
-            {
-                result: [206],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [205],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [55],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: true,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [57],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: true,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [163],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: true,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [164],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: true,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [166],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: true,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [187],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: true,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [188],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [190],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [222],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: true,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [223],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: true,
-                    earth: false,
-                },
-            },
-            {
-                result: [225],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: true,
-                    earth: false,
-                },
-            },
-            {
-                result: [246],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: true,
-                    earth: false,
-                },
-            },
-            {
-                result: [247],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: true,
-                },
-            },
-            {
-                result: [249],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: true,
-                },
-            },
-            {
-                result: [355],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: true,
-                    even: false,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: true,
-                },
-            },
-            {
-                result: [54],
-                expectedValue: {
-                    big: false,
-                    small: true,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-            {
-                result: [356],
-                expectedValue: {
-                    big: true,
-                    small: false,
-                    odd: false,
-                    even: true,
-                    gold: false,
-                    wood: false,
-                    water: false,
-                    fire: false,
-                    earth: false,
-                },
-            },
-        ];
+        describe("Odd/Even Tests", () => {
+            describe("when total points is even", () => {
+                it.each`
+                    total
+                    ${58}
+                    ${300}
+                    ${200}
+                `("Settlement result with $total points should be even", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
 
-        it.each(testCases)("should return correct value", (testCase) => {
-            // arrange
+                    //Assert
+                    expect(result.even).toBeTrue();
+                });
+            });
 
-            // act
-            const actualValue = SettlementRules.mini(testCase.result);
+            describe("when total points is odd", () => {
+                it.each`
+                    total
+                    ${55}
+                    ${311}
+                    ${201}
+                `("Settlement result with $total points should be odd", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
 
-            //assert
-            expect(actualValue).toStrictEqual(testCase.expectedValue);
+                    //Assert
+                    expect(result.odd).toBeTrue();
+                });
+            });
+        });
+
+        describe("Big/Small Tests", () => {
+            describe("when total points is in (55,205)", () => {
+                // arrange
+                const total = chance.integer({ min: 56, max: 204 });
+
+                it.each`
+                    total
+                    ${55}
+                    ${205}
+                    ${total}
+                `("Settlement result with $total points should be SMALL", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.small).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (206,355)", () => {
+                // arrange
+                const total = chance.integer({ min: 812, max: 1409 });
+
+                it.each`
+                    total
+                    ${206}
+                    ${355}
+                    ${total}
+                `("Settlement result with $total points should be BIG", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.big).toBeTrue();
+                });
+            });
+        });
+
+        describe("Elements Tests", () => {
+            describe("when total points is in (55,163)", () => {
+                // arrange
+                const total = chance.integer({ min: 56, max: 162 });
+
+                it.each`
+                    total
+                    ${55}
+                    ${163}
+                    ${total}
+                `("Element result with $total points should be GOLD", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.gold).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (164,187)", () => {
+                // arrange
+                const total = chance.integer({ min: 165, max: 186 });
+
+                it.each`
+                    total
+                    ${164}
+                    ${187}
+                    ${total}
+                `("Element result with $total points should be WOOD", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.wood).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (188,222)", () => {
+                // arrange
+                const total = chance.integer({ min: 189, max: 221 });
+
+                it.each`
+                    total
+                    ${188}
+                    ${222}
+                    ${total}
+                `("Element result with $total points should be WATER", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.water).toBeTrue();
+                });
+            });
+            describe("when total points is in (223,246)", () => {
+                // arrange
+                const total = chance.integer({ min: 224, max: 245 });
+
+                it.each`
+                    total
+                    ${223}
+                    ${246}
+                    ${total}
+                `("Element result with $total points should be FIRE", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.fire).toBeTrue();
+                });
+            });
+
+            describe("when total points is in (247,355)", () => {
+                // arrange
+                const total = chance.integer({ min: 248, max: 254 });
+
+                it.each`
+                    total
+                    ${247}
+                    ${355}
+                    ${total}
+                `("Element result with $total points should be EARTH", ({ total }) => {
+                    //Act
+                    const result = settlementRules.mini([total]);
+
+                    //Assert
+                    expect(result.earth).toBeTrue();
+                });
+            });
         });
     });
 });
