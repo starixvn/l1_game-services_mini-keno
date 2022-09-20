@@ -62,6 +62,15 @@ export default class Bot extends Table.Crons.TableGameBot {
             });
     }
 
+    async botJoinRoom(bot) {
+        await this.userInfosRepository.updateOne({ id: bot.id }, { inRoom: true, inGameRoom: "megakeno" });
+
+        this.resetBot(bot);
+        this.botsInRoom[bot.id] = bot;
+
+        this.addToPlayersAndPublish(bot);
+    }
+
     resetAllBotData() {
         super.resetAllBotData();
         this.resetAllBets();
