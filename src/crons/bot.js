@@ -1,7 +1,5 @@
-import mongoose from "mongoose";
-import Chance from "chance";
 import { helpers } from "sc-common";
-import { Core, Table, Constants } from "sc-game-base";
+import { Table, Constants } from "sc-game-base";
 import constants from "../constants";
 
 export default class Bot extends Table.Crons.TableGameBot {
@@ -14,8 +12,6 @@ export default class Bot extends Table.Crons.TableGameBot {
      */
     constructor(definition, gameData, publisher, userInfosRepository, tempBetsRepository) {
         super(definition, gameData, publisher, userInfosRepository, tempBetsRepository);
-
-        this.chance = new Chance();
 
         this.betChoiceRatio = {
             MainOpts: 86, //big | small
