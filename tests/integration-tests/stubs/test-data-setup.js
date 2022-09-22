@@ -293,7 +293,10 @@ const getUserId = async (memberId) => {
 
 const createRounds = async () => {
     try {
-        return miniKenoRounds("megakeno_rounds").insertMany(rounds);
+        await miniKenoRounds("megakeno_rounds").insertMany(rounds);
+        await miniKenoRounds("megakeno2_rounds").insertMany(rounds);
+        await miniKenoRounds("kenoeast_phien").insertMany(rounds);
+        await miniKenoRounds("kenowest_phien").insertMany(rounds);
     } catch (error) {
         console.log(error);
     }
@@ -302,7 +305,10 @@ const createRounds = async () => {
 const createUserBetData = async () => {
     const userId = await getUserId(normalUser.playerId);
     const betData = userBetData(userId);
-    return bets("megakeno_bets").insertMany(betData);
+    await bets("megakeno_ones").insertMany(betData);
+    await bets("megakeno2_ones").insertMany(betData);
+    await bets("kenoeast_ones").insertMany(betData);
+    await bets("kenowest_ones").insertMany(betData);
 };
 
 createTestData();
