@@ -6408,10 +6408,10 @@ sc-game-service-integration-utils@1.3.3:
     sc-game-base "3.1.1"
     socket.io-client "^4.4.0"
 
-sc-multiple-games-base@1.8.2:
-  version "1.8.2"
-  resolved "https://npm.lumigame.com/sc-multiple-games-base/-/sc-multiple-games-base-1.8.2.tgz#8f2544f97b22135e1d67f80fd2832660a1920366"
-  integrity sha512-mDYNY9TaPbbFFFpy28ittNxXdH6LIDXl2TTroFbbeFXLp7TVANhe5YoK+n2z6pOBgCg+iI+ZX/mBmH1o3YP1+w==
+sc-multiple-games-base@1.8.3-beta.2:
+  version "1.8.3-beta.2"
+  resolved "https://npm.lumigame.com/sc-multiple-games-base/-/sc-multiple-games-base-1.8.3-beta.2.tgz#89af2e10dd98cc5233c1d0f812159947abddebb9"
+  integrity sha512-ZWepMW0duw6FA0Xc+AXuuI/50BxfY31YfwTNO5uFnaNT9s0FdgypD/6AABC0JNysjYyQ03itlW1BAtZC9z7r5Q==
   dependencies:
     sc-game-base "3.1.1"
 
