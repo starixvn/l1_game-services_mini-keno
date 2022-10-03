@@ -38,13 +38,22 @@ const createViews = async () => {
                 $project: {
                     _id: 0,
                     playerId: "$local.memberId",
+                    operatorId: {
+                        $ifNull: [
+                            {
+                                $ifNull: ["$local.operatorId", "$local.partnerId"],
+                            },
+                            "$local.clientId",
+                        ],
+                    },
                 },
             },
             {
                 $lookup: {
-                    from: "megakeno_ones",
+                    from: "unbalancedbigsmall1_bets",
                     let: {
                         playerId: "$playerId",
+                        operatorId: "$operatorId",
                     },
                     pipeline: [
                         {
@@ -57,16 +66,20 @@ const createViews = async () => {
                                         {
                                             $eq: ["$playerId", "$$playerId"],
                                         },
+                                        {
+                                            $eq: ["$operatorId", "$$operatorId"],
+                                        },
                                     ],
                                 },
                             },
                         },
                         {
                             $lookup: {
-                                from: "megakeno_bets",
+                                from: "unbalancedbigsmall1_betlogs",
                                 let: {
                                     roundId: "$roundId",
                                     playerId: "$playerId",
+                                    operatorId: "$operatorId",
                                 },
                                 pipeline: [
                                     {
@@ -79,6 +92,9 @@ const createViews = async () => {
                                                     {
                                                         $eq: ["$playerId", "$$playerId"],
                                                     },
+                                                    {
+                                                        $eq: ["$operatorId", "$$operatorId"],
+                                                    },
                                                 ],
                                             },
                                         },
@@ -89,7 +105,7 @@ const createViews = async () => {
                         },
                         {
                             $lookup: {
-                                from: "megakeno_rounds",
+                                from: "unbalancedbigsmall1_rounds",
                                 localField: "roundId",
                                 foreignField: "id",
                                 as: "round",
@@ -101,19 +117,20 @@ const createViews = async () => {
                         {
                             $set: {
                                 gameId: {
-                                    $literal: 52,
+                                    $literal: 50,
                                 },
                             },
                         },
                     ],
-                    as: "megakeno",
+                    as: "lasvegas",
                 },
             },
             {
                 $lookup: {
-                    from: "megakeno2_ones",
+                    from: "unbalancedbigsmall2_bets",
                     let: {
                         playerId: "$playerId",
+                        operatorId: "$operatorId",
                     },
                     pipeline: [
                         {
@@ -126,16 +143,20 @@ const createViews = async () => {
                                         {
                                             $eq: ["$playerId", "$$playerId"],
                                         },
+                                        {
+                                            $eq: ["$operatorId", "$$operatorId"],
+                                        },
                                     ],
                                 },
                             },
                         },
                         {
                             $lookup: {
-                                from: "megakeno2_bets",
+                                from: "unbalancedbigsmall2_betlogs",
                                 let: {
                                     roundId: "$roundId",
                                     playerId: "$playerId",
+                                    operatorId: "$operatorId",
                                 },
                                 pipeline: [
                                     {
@@ -148,6 +169,9 @@ const createViews = async () => {
                                                     {
                                                         $eq: ["$playerId", "$$playerId"],
                                                     },
+                                                    {
+                                                        $eq: ["$operatorId", "$$operatorId"],
+                                                    },
                                                 ],
                                             },
                                         },
@@ -158,7 +182,7 @@ const createViews = async () => {
                         },
                         {
                             $lookup: {
-                                from: "megakeno2_rounds",
+                                from: "unbalancedbigsmall2_rounds",
                                 localField: "roundId",
                                 foreignField: "id",
                                 as: "round",
@@ -170,19 +194,20 @@ const createViews = async () => {
                         {
                             $set: {
                                 gameId: {
-                                    $literal: 53,
+                                    $literal: 51,
                                 },
                             },
                         },
                     ],
-                    as: "megakeno2",
+                    as: "marinabay",
                 },
             },
             {
                 $lookup: {
-                    from: "kenomini_ones",
+                    from: "unbalancedbigsmall3_bets",
                     let: {
                         playerId: "$playerId",
+                        operatorId: "$operatorId",
                     },
                     pipeline: [
                         {
@@ -195,16 +220,20 @@ const createViews = async () => {
                                         {
                                             $eq: ["$playerId", "$$playerId"],
                                         },
+                                        {
+                                            $eq: ["$operatorId", "$$operatorId"],
+                                        },
                                     ],
                                 },
                             },
                         },
                         {
                             $lookup: {
-                                from: "kenomini_cuocs",
+                                from: "unbalancedbigsmall3_betlogs",
                                 let: {
                                     roundId: "$roundId",
                                     playerId: "$playerId",
+                                    operatorId: "$operatorId",
                                 },
                                 pipeline: [
                                     {
@@ -217,6 +246,9 @@ const createViews = async () => {
                                                     {
                                                         $eq: ["$playerId", "$$playerId"],
                                                     },
+                                                    {
+                                                        $eq: ["$operatorId", "$$operatorId"],
+                                                    },
                                                 ],
                                             },
                                         },
@@ -227,7 +259,7 @@ const createViews = async () => {
                         },
                         {
                             $lookup: {
-                                from: "kenomini_phiens",
+                                from: "unbalancedbigsmall3_rounds",
                                 localField: "roundId",
                                 foreignField: "id",
                                 as: "round",
@@ -239,19 +271,20 @@ const createViews = async () => {
                         {
                             $set: {
                                 gameId: {
-                                    $literal: 14,
+                                    $literal: 54,
                                 },
                             },
                         },
                     ],
-                    as: "kenomini",
+                    as: "macau",
                 },
             },
             {
                 $lookup: {
-                    from: "kenomini2_ones",
+                    from: "unbalancedbigsmall4_bets",
                     let: {
                         playerId: "$playerId",
+                        operatorId: "$operatorId",
                     },
                     pipeline: [
                         {
@@ -264,16 +297,20 @@ const createViews = async () => {
                                         {
                                             $eq: ["$playerId", "$$playerId"],
                                         },
+                                        {
+                                            $eq: ["$operatorId", "$$operatorId"],
+                                        },
                                     ],
                                 },
                             },
                         },
                         {
                             $lookup: {
-                                from: "kenomini2_cuocs",
+                                from: "unbalancedbigsmall4_betlogs",
                                 let: {
                                     roundId: "$roundId",
                                     playerId: "$playerId",
+                                    operatorId: "$operatorId",
                                 },
                                 pipeline: [
                                     {
@@ -286,74 +323,8 @@ const createViews = async () => {
                                                     {
                                                         $eq: ["$playerId", "$$playerId"],
                                                     },
-                                                ],
-                                            },
-                                        },
-                                    },
-                                ],
-                                as: "betLogs",
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenomini2_phiens",
-                                localField: "roundId",
-                                foreignField: "id",
-                                as: "round",
-                            },
-                        },
-                        {
-                            $unwind: "$round",
-                        },
-                        {
-                            $set: {
-                                gameId: {
-                                    $literal: 15,
-                                },
-                            },
-                        },
-                    ],
-                    as: "kenomini2",
-                },
-            },
-            {
-                $lookup: {
-                    from: "kenoeast_ones",
-                    let: {
-                        playerId: "$playerId",
-                    },
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: {
-                                    $and: [
-                                        {
-                                            $eq: ["$paid", true],
-                                        },
-                                        {
-                                            $eq: ["$playerId", "$$playerId"],
-                                        },
-                                    ],
-                                },
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenoeast_cuocs",
-                                let: {
-                                    roundId: "$roundId",
-                                    playerId: "$playerId",
-                                },
-                                pipeline: [
-                                    {
-                                        $match: {
-                                            $expr: {
-                                                $and: [
                                                     {
-                                                        $eq: ["$roundId", "$$roundId"],
-                                                    },
-                                                    {
-                                                        $eq: ["$playerId", "$$playerId"],
+                                                        $eq: ["$operatorId", "$$operatorId"],
                                                     },
                                                 ],
                                             },
@@ -365,7 +336,7 @@ const createViews = async () => {
                         },
                         {
                             $lookup: {
-                                from: "kenoeast_phiens",
+                                from: "unbalancedbigsmall4_rounds",
                                 localField: "roundId",
                                 foreignField: "id",
                                 as: "round",
@@ -377,242 +348,22 @@ const createViews = async () => {
                         {
                             $set: {
                                 gameId: {
-                                    $literal: 16,
+                                    $literal: 55,
                                 },
                             },
                         },
                     ],
-                    as: "kenoeast",
-                },
-            },
-            {
-                $lookup: {
-                    from: "kenowest_ones",
-                    let: {
-                        playerId: "$playerId",
-                    },
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: {
-                                    $and: [
-                                        {
-                                            $eq: ["$paid", true],
-                                        },
-                                        {
-                                            $eq: ["$playerId", "$$playerId"],
-                                        },
-                                    ],
-                                },
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenowest_cuocs",
-                                let: {
-                                    roundId: "$roundId",
-                                    playerId: "$playerId",
-                                },
-                                pipeline: [
-                                    {
-                                        $match: {
-                                            $expr: {
-                                                $and: [
-                                                    {
-                                                        $eq: ["$roundId", "$$roundId"],
-                                                    },
-                                                    {
-                                                        $eq: ["$playerId", "$$playerId"],
-                                                    },
-                                                ],
-                                            },
-                                        },
-                                    },
-                                ],
-                                as: "betLogs",
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenowest_phiens",
-                                localField: "roundId",
-                                foreignField: "id",
-                                as: "round",
-                            },
-                        },
-                        {
-                            $unwind: "$round",
-                        },
-                        {
-                            $set: {
-                                gameId: {
-                                    $literal: 17,
-                                },
-                            },
-                        },
-                    ],
-                    as: "kenowest",
-                },
-            },
-            {
-                $lookup: {
-                    from: "kenosouth_ones",
-                    let: {
-                        playerId: "$playerId",
-                    },
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: {
-                                    $and: [
-                                        {
-                                            $eq: ["$paid", true],
-                                        },
-                                        {
-                                            $eq: ["$playerId", "$$playerId"],
-                                        },
-                                    ],
-                                },
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenosouth_cuocs",
-                                let: {
-                                    roundId: "$roundId",
-                                    playerId: "$playerId",
-                                },
-                                pipeline: [
-                                    {
-                                        $match: {
-                                            $expr: {
-                                                $and: [
-                                                    {
-                                                        $eq: ["$roundId", "$$roundId"],
-                                                    },
-                                                    {
-                                                        $eq: ["$playerId", "$$playerId"],
-                                                    },
-                                                ],
-                                            },
-                                        },
-                                    },
-                                ],
-                                as: "betLogs",
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenosouth_phiens",
-                                localField: "roundId",
-                                foreignField: "id",
-                                as: "round",
-                            },
-                        },
-                        {
-                            $unwind: "$round",
-                        },
-                        {
-                            $set: {
-                                gameId: {
-                                    $literal: 18,
-                                },
-                            },
-                        },
-                    ],
-                    as: "kenosouth",
-                },
-            },
-            {
-                $lookup: {
-                    from: "kenonorth_ones",
-                    let: {
-                        playerId: "$playerId",
-                    },
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: {
-                                    $and: [
-                                        {
-                                            $eq: ["$paid", true],
-                                        },
-                                        {
-                                            $eq: ["$playerId", "$$playerId"],
-                                        },
-                                    ],
-                                },
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenonorth_cuocs",
-                                let: {
-                                    roundId: "$roundId",
-                                    playerId: "$playerId",
-                                },
-                                pipeline: [
-                                    {
-                                        $match: {
-                                            $expr: {
-                                                $and: [
-                                                    {
-                                                        $eq: ["$roundId", "$$roundId"],
-                                                    },
-                                                    {
-                                                        $eq: ["$playerId", "$$playerId"],
-                                                    },
-                                                ],
-                                            },
-                                        },
-                                    },
-                                ],
-                                as: "betLogs",
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "kenonorth_phiens",
-                                localField: "roundId",
-                                foreignField: "id",
-                                as: "round",
-                            },
-                        },
-                        {
-                            $unwind: "$round",
-                        },
-                        {
-                            $set: {
-                                gameId: {
-                                    $literal: 19,
-                                },
-                            },
-                        },
-                    ],
-                    as: "kenonorth",
+                    as: "montecarlo",
                 },
             },
             {
                 $set: {
-                    megakeno: "$$REMOVE",
-                    megakeno2: "$$REMOVE",
-                    kenomini: "$$REMOVE",
-                    kenomini2: "$$REMOVE",
-                    kenoeast: "$$REMOVE",
-                    kenowest: "$$REMOVE",
-                    kenosouth: "$$REMOVE",
-                    kenonorth: "$$REMOVE",
+                    lasvegas: "$$REMOVE",
+                    marinabay: "$$REMOVE",
+                    macau: "$$REMOVE",
+                    montecarlo: "$$REMOVE",
                     bet: {
-                        $concatArrays: [
-                            "$megakeno",
-                            "$megakeno2",
-                            "$kenomini",
-                            "$kenomini2",
-                            "$kenoeast",
-                            "$kenowest",
-                            "$kenosouth",
-                            "$kenonorth",
-                        ],
+                        $concatArrays: ["$lasvegas", "$marinabay", "$macau", "$montecarlo"],
                     },
                 },
             },

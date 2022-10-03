@@ -31,8 +31,8 @@ export function bets(modelName) {
         modelName,
         new mongoose.Schema({
             ...bet,
-            currency: { type: String, require: true },
-            rate: { type: Number, require: true },
+            currency: { type: String, required: true },
+            rate: { type: Number, required: true },
             operatorId: { type: String, required: false },
         })
     );
