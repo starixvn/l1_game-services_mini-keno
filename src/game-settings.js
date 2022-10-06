@@ -24,7 +24,7 @@ export default [
         id: 16,
         name: "KenoEast",
         durations: {
-            wholeRound: 40,
+            wholeRound: 43,
             placingBets: 30,
             lockingBet: 5,
         },
@@ -48,7 +48,7 @@ export default [
         id: 14,
         name: "KenoMini",
         durations: {
-            wholeRound: 47,
+            wholeRound: 51,
             placingBets: 40,
             lockingBet: 5,
         },
@@ -72,7 +72,7 @@ export default [
         id: 15,
         name: "KenoMini2",
         durations: {
-            wholeRound: 37,
+            wholeRound: 41,
             placingBets: 30,
             lockingBet: 5,
         },
@@ -96,7 +96,7 @@ export default [
         id: 19,
         name: "KenoNorth",
         durations: {
-            wholeRound: 40,
+            wholeRound: 43,
             placingBets: 30,
             lockingBet: 5,
         },
@@ -120,7 +120,7 @@ export default [
         id: 18,
         name: "KenoSouth",
         durations: {
-            wholeRound: 40,
+            wholeRound: 43,
             placingBets: 30,
             lockingBet: 5,
         },
@@ -144,7 +144,7 @@ export default [
         id: 17,
         name: "KenoWest",
         durations: {
-            wholeRound: 40,
+            wholeRound: 43,
             placingBets: 30,
             lockingBet: 5,
         },
@@ -153,12 +153,12 @@ export default [
         hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
+            allGamesBetsRepository,
             roundsRepository: getRoundRepository("KenoWest_phien"),
             betsRepository: getBetRepository("KenoWest_one"),
             betLogsRepository: getBetLogsRepository("KenoWest_cuoc"),
             resultsRepository: getResultRepository("KenoWest_result"),
             tempBetsRepository: getTempBetRepository("KenoWest_tmpbets"),
-            allGamesBetsRepository,
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
@@ -168,7 +168,7 @@ export default [
         id: 52,
         name: "MegaKeno",
         durations: {
-            wholeRound: 55,
+            wholeRound: 58,
             placingBets: 45,
             lockingBet: 5,
         },
@@ -192,7 +192,7 @@ export default [
         id: 53,
         name: "MegaKeno2",
         durations: {
-            wholeRound: 40,
+            wholeRound: 43,
             placingBets: 30,
             lockingBet: 5,
         },
@@ -201,12 +201,12 @@ export default [
         hedgeBetGroups,
         defaultBetTracks: {},
         repositories: {
+            allGamesBetsRepository,
             roundsRepository: getRoundRepository("MegaKeno2_rounds"),
             betsRepository: getBetRepository("MegaKeno2_ones"),
             betLogsRepository: getBetLogsRepository("MegaKeno2_bets"),
             resultsRepository: getResultRepository("MegaKeno2_result"),
             tempBetsRepository: getTempBetRepository("MegaKeno2_tmpbets"),
-            allGamesBetsRepository
         },
         generateResult: (randomMode) => generateResult(randomMode, 20, 80),
         settle: SettlementRules.full,
