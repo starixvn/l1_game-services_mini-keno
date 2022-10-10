@@ -65,6 +65,7 @@ export default {
         "http://m.gamesaba.com",
         "https://m.gamesaba.com",
         "https://keno.sabagame.com",
+        "https://keno.gamesaba.com",
     ],
     metrics: {
         enable: true,
