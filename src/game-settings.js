@@ -19,19 +19,33 @@ export const hedgeBetGroups = [
 
 const allGamesBetsRepository = allGamesHistoriesModel("megakeno_histories");
 
-export default [
-    {
-        id: 16,
-        name: "KenoEast",
-        durations: {
-            wholeRound: 43,
-            placingBets: 30,
-            lockingBet: 5,
-        },
+const kenoDirectionDurations = {
+    wholeRound: 43,
+    placingBets: 30,
+    lockingBet: 5,
+};
+
+const fullGenerateResult = (randomMode) => generateResult(randomMode, 20, 80);
+const miniGenerateResult = (randomMode) => generateResult(randomMode, 10, 40);
+
+function generateGameSetting(id, name, durations, settle, generateResult) {
+    return {
+        id,
+        name,
+        durations,
         choices,
         choicesMapper,
         hedgeBetGroups,
         defaultBetTracks: {},
+        settle,
+        generateResult,
+        generateRawResultForHash,
+    };
+}
+
+export default [
+    {
+        ...generateGameSetting(16, "KenoEast", kenoDirectionDurations, SettlementRules.full, fullGenerateResult),
         repositories: {
             roundsRepository: getRoundRepository("KenoEast_phien"),
             betsRepository: getBetRepository("KenoEast_one"),
@@ -40,22 +54,19 @@ export default [
             tempBetsRepository: getTempBetRepository("KenoEast_tmpbets"),
             allGamesBetsRepository,
         },
-        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
-        settle: SettlementRules.full,
-        generateRawResultForHash,
     },
     {
-        id: 14,
-        name: "KenoMini",
-        durations: {
-            wholeRound: 51,
-            placingBets: 40,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(
+            14,
+            "KenoMini",
+            {
+                wholeRound: 51,
+                placingBets: 40,
+                lockingBet: 5,
+            },
+            SettlementRules.mini,
+            miniGenerateResult
+        ),
         repositories: {
             roundsRepository: getRoundRepository("KenoMini_phien"),
             betsRepository: getBetRepository("KenoMini_one"),
@@ -64,22 +75,19 @@ export default [
             tempBetsRepository: getTempBetRepository("KenoMini_tmpbets"),
             allGamesBetsRepository,
         },
-        generateResult: (randomMode) => generateResult(randomMode, 10, 40),
-        settle: SettlementRules.mini,
-        generateRawResultForHash,
     },
     {
-        id: 15,
-        name: "KenoMini2",
-        durations: {
-            wholeRound: 41,
-            placingBets: 30,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(
+            15,
+            "KenoMini2",
+            {
+                wholeRound: 41,
+                placingBets: 30,
+                lockingBet: 5,
+            },
+            SettlementRules.mini,
+            miniGenerateResult
+        ),
         repositories: {
             roundsRepository: getRoundRepository("KenoMini2_phien"),
             betsRepository: getBetRepository("KenoMini2_one"),
@@ -88,22 +96,9 @@ export default [
             tempBetsRepository: getTempBetRepository("KenoMini2_tmpbets"),
             allGamesBetsRepository,
         },
-        generateResult: (randomMode) => generateResult(randomMode, 10, 40),
-        settle: SettlementRules.mini,
-        generateRawResultForHash,
     },
     {
-        id: 19,
-        name: "KenoNorth",
-        durations: {
-            wholeRound: 43,
-            placingBets: 30,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(19, "KenoNorth", kenoDirectionDurations, SettlementRules.full, fullGenerateResult),
         repositories: {
             roundsRepository: getRoundRepository("KenoNorth_phien"),
             betsRepository: getBetRepository("KenoNorth_one"),
@@ -112,22 +107,9 @@ export default [
             tempBetsRepository: getTempBetRepository("KenoNorth_tmpbets"),
             allGamesBetsRepository,
         },
-        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
-        settle: SettlementRules.full,
-        generateRawResultForHash,
     },
     {
-        id: 18,
-        name: "KenoSouth",
-        durations: {
-            wholeRound: 43,
-            placingBets: 30,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(18, "KenoSouth", kenoDirectionDurations, SettlementRules.full, fullGenerateResult),
         repositories: {
             roundsRepository: getRoundRepository("KenoSouth_phien"),
             betsRepository: getBetRepository("KenoSouth_one"),
@@ -136,22 +118,9 @@ export default [
             tempBetsRepository: getTempBetRepository("KenoSouth_tmpbets"),
             allGamesBetsRepository,
         },
-        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
-        settle: SettlementRules.full,
-        generateRawResultForHash,
     },
     {
-        id: 17,
-        name: "KenoWest",
-        durations: {
-            wholeRound: 43,
-            placingBets: 30,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(17, "KenoWest", kenoDirectionDurations, SettlementRules.full, fullGenerateResult),
         repositories: {
             allGamesBetsRepository,
             roundsRepository: getRoundRepository("KenoWest_phien"),
@@ -160,22 +129,19 @@ export default [
             resultsRepository: getResultRepository("KenoWest_result"),
             tempBetsRepository: getTempBetRepository("KenoWest_tmpbets"),
         },
-        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
-        settle: SettlementRules.full,
-        generateRawResultForHash,
     },
     {
-        id: 52,
-        name: "MegaKeno",
-        durations: {
-            wholeRound: 58,
-            placingBets: 45,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(
+            52,
+            "MegaKeno",
+            {
+                wholeRound: 58,
+                placingBets: 45,
+                lockingBet: 5,
+            },
+            SettlementRules.full,
+            fullGenerateResult
+        ),
         repositories: {
             roundsRepository: getRoundRepository("MegaKeno_rounds"),
             betsRepository: getBetRepository("MegaKeno_ones"),
@@ -184,22 +150,19 @@ export default [
             tempBetsRepository: getTempBetRepository("MegaKeno_tmpbets"),
             allGamesBetsRepository,
         },
-        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
-        settle: SettlementRules.full,
-        generateRawResultForHash,
     },
     {
-        id: 53,
-        name: "MegaKeno2",
-        durations: {
-            wholeRound: 43,
-            placingBets: 30,
-            lockingBet: 5,
-        },
-        choices,
-        choicesMapper,
-        hedgeBetGroups,
-        defaultBetTracks: {},
+        ...generateGameSetting(
+            53,
+            "MegaKeno2",
+            {
+                wholeRound: 43,
+                placingBets: 30,
+                lockingBet: 5,
+            },
+            SettlementRules.full,
+            fullGenerateResult
+        ),
         repositories: {
             allGamesBetsRepository,
             roundsRepository: getRoundRepository("MegaKeno2_rounds"),
@@ -208,8 +171,5 @@ export default [
             resultsRepository: getResultRepository("MegaKeno2_result"),
             tempBetsRepository: getTempBetRepository("MegaKeno2_tmpbets"),
         },
-        generateResult: (randomMode) => generateResult(randomMode, 20, 80),
-        settle: SettlementRules.full,
-        generateRawResultForHash,
     },
 ];
