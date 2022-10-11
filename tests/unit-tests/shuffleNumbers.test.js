@@ -10,4 +10,13 @@ describe("shuffleNumbers", () => {
         expect(actualResult.length).toEqual(numberOfPicked);
         expect(actualResult).toSatisfyAll((number) => number >= 1 && number <= numberOfSeeds);
     });
+
+    it.each(testCases)("should return 10 numbers having value between 1 and 40", ({ randomMode }) => {
+        const numberOfPicked = 10,
+            numberOfSeeds = 40;
+        const actualResult = generateResult(randomMode, numberOfPicked, numberOfSeeds);
+
+        expect(actualResult.length).toEqual(numberOfPicked);
+        expect(actualResult).toSatisfyAll((number) => number >= 1 && number <= numberOfSeeds);
+    });
 });
