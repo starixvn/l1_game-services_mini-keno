@@ -62,6 +62,7 @@ export default {
         "https://m.v-gaming.net",
         "http://m2.v-gaming.net",
         "https://m2.v-gaming.net",
+        "https://keno.v-gaming.net",
     ],
     metrics: {
         enable: true,
