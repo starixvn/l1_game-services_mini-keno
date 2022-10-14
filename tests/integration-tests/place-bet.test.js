@@ -1,7 +1,10 @@
 import { GameClientDriver, normalUser, eventTypes } from "sc-game-service-integration-utils";
-import { socketOptions } from "./stubs/test-data";
+import { gameConfig, socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./init-user-session";
 import gameSettings from "./stubs/game-settings";
+import Chance from "chance";
+
+const chance = new Chance();
 
 export const placeBetTest = () => {
     describe("place bet", () => {
@@ -151,6 +154,121 @@ export const placeBetTest = () => {
                                 }
                             });
                         });
+                    });
+                });
+            });
+
+            describe("when place bet with amount > max bet", () => {
+                it("should return bet failed", (done) => {
+                    // Arrange
+                    const choice = chance.pickone(gameSettings[0].choices);
+                    const maxBet = gameConfig.maxBetPerChoices[choice];
+                    const betAmount = maxBet + 1;
+                    const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
+                    client.handleSignedInEvent(() => {
+                        client.sendInGameEvent();
+                    });
+                    let receivedRemainingTime = false;
+
+                    // Act
+                    client.on(socketOptions.gameName, (inGameData) => {
+                        if (inGameData.remainingTime && !receivedRemainingTime) {
+                            receivedRemainingTime = true;
+                            setTimeout(() => {
+                                console.log(`betChoice: '${choice}', amount: ${betAmount}`);
+                                client.emit(eventTypes.bet, { betChoice: choice, amount: betAmount });
+                            }, getTimeOutToNextRound(inGameData.remainingTime, gameSettings[0].durations) * 1000);
+                        }
+                    });
+
+                    // Assert
+                    client.on(socketOptions.gameName, (data) => {
+                        if (data.endBet) {
+                            expect(data.betChoice).toBe(choice);
+                            expect(data.endBet).toBe(-1);
+                            expect(data.notice.errorCode).toEqual("SB1910");
+
+                            client.close();
+                            done();
+                        }
+                    });
+                });
+            });
+
+            describe("when place bet with amount < min bet", () => {
+                it("should return bet failed", (done) => {
+                    // Arrange
+                    const choice = chance.pickone(gameSettings[0].choices);
+                    const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
+                    client.handleSignedInEvent(() => {
+                        client.sendInGameEvent();
+                    });
+                    let receivedRemainingTime = false;
+
+                    // Act
+                    client.on(socketOptions.gameName, (inGameData) => {
+                        if (inGameData.remainingTime && !receivedRemainingTime) {
+                            receivedRemainingTime = true;
+                            setTimeout(() => {
+                                console.log(`betChoice: '${choice}', amount: -1`);
+                                client.emit(eventTypes.bet, { betChoice: choice, amount: -1 });
+                            }, getTimeOutToBet(inGameData.remainingTime, gameSettings[0].durations) * 1000);
+                        }
+                    });
+
+                    // Assert
+                    client.on(socketOptions.gameName, (data) => {
+                        if (data.endBet) {
+                            expect(data.betChoice).toBe(choice);
+                            expect(data.endBet).toBe(-1);
+                            expect(data.notice.errorCode).toEqual("SB1909");
+
+                            client.close();
+                            done();
+                        }
+                    });
+                });
+            });
+
+            describe("when place bet reach max bet on round", () => {
+                it("should return bet failed", (done) => {
+                    // Arrange
+                    const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
+                    client.handleSignedInEvent(() => {
+                        client.sendInGameEvent();
+                    });
+                    let receivedRemainingTime = false;
+                    let isHavingBet = false;
+
+                    // Act
+                    client.on(socketOptions.gameName, (inGameData) => {
+                        if (inGameData.remainingTime && !receivedRemainingTime) {
+                            const timeOutToBet = getTimeOutToBet(inGameData.remainingTime, gameSettings[0].durations) * 1000;
+
+                            receivedRemainingTime = true;
+                            setTimeout(() => {
+                                console.log(`betChoice: 'big', amount: 2000`);
+                                client.emit(eventTypes.bet, { betChoice: "big", amount: 2000 });
+                            }, timeOutToBet);
+
+                            setTimeout(() => {
+                                console.log(`betChoice: 'odd', amount: 2000`);
+                                client.emit(eventTypes.bet, { betChoice: "odd", amount: 2000 });
+                            }, timeOutToBet + 1000);
+                        }
+                    });
+
+                    // Assert
+                    client.on(socketOptions.gameName, (data) => {
+                        if (data.endBet && isHavingBet) {
+                            expect(data.endBet).toBe(-1);
+                            expect(data.notice.errorCode).toEqual("SB1911");
+
+                            client.close();
+                            done();
+                        }
+
+                        data.endBet && (isHavingBet = true);
                     });
                 });
             });
