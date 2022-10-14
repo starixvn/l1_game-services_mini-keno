@@ -33,6 +33,9 @@ export default class Bot extends Table.Crons.TableGameBot {
             await super.run();
         } else {
             await this.addRemoveBotsFromOtherGames();
+
+            const botsToBet = this.getBotsToBet();
+            await Promise.all(botsToBet.map((bot) => this.placeBet(bot)));
         }
     }
 

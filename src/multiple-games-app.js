@@ -1,6 +1,4 @@
 import { Table, Core } from "sc-game-base";
-import { allGamesHistoriesModel } from "sc-multiple-games-base";
-
 import MiniKenoContainerRegistry from "./mini-keno-container-registry";
 
 export default class MultipleGamesApp extends Core.BaseGameApp {
