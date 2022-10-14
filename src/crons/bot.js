@@ -29,8 +29,11 @@ export default class Bot extends Table.Crons.TableGameBot {
     }
 
     async run() {
-        await this.addRemoveBotsFromOtherGames();
-        await super.run();
+        if (this.definition.name === "MegaKeno") {
+            await super.run();
+        } else {
+            await this.addRemoveBotsFromOtherGames();
+        }
     }
 
     async addRemoveBotsFromOtherGames() {
@@ -56,15 +59,6 @@ export default class Bot extends Table.Crons.TableGameBot {
                 delete this.gameData.players[botId];
                 delete this.botsInRoom[botId];
             });
-    }
-
-    async botJoinRoom(bot) {
-        await this.userInfosRepository.updateOne({ id: bot.id }, { inRoom: true, inGameRoom: "megakeno" });
-
-        this.resetBot(bot);
-        this.botsInRoom[bot.id] = bot;
-
-        this.addToPlayersAndPublish(bot);
     }
 
     resetAllBotData() {
