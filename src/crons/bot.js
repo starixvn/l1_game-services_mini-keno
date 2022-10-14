@@ -28,18 +28,26 @@ export default class Bot extends Table.Crons.TableGameBot {
         this.resetAllBets();
     }
 
+    async reset() {
+        if (this.definition.name === "MegaKeno") {
+            await super.reset();
+        } else {
+            this.resetAllBotData();
+        }
+    }
+
     async run() {
         if (this.definition.name === "MegaKeno") {
             await super.run();
         } else {
-            await this.addRemoveBotsFromOtherGames();
+            await this.updateBotList();
 
             const botsToBet = this.getBotsToBet();
             await Promise.all(botsToBet.map((bot) => this.placeBet(bot)));
         }
     }
 
-    async addRemoveBotsFromOtherGames() {
+    async updateBotList() {
         const currentBotIds = Object.keys(this.botsInRoom);
         const botUsers = await this.userInfosRepository
             .find({ type: true, inRoom: true, inGameRoom: "megakeno", disabled: false }, "-_id id name red avatarId type")
