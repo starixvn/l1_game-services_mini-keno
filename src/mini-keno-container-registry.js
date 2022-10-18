@@ -1,7 +1,9 @@
 import { asValue, asClass } from "awilix";
 import { MultipleTableGamesContainerRegistry } from "sc-multiple-games-base";
+import MiniKenoRebetConsumer from "./consumers/rebet-consumer";
 import Bot from "./crons/bot";
 import UserSignInConsumer from "./consumers/user-signin-consumer";
+import SocketRouter from "./routers/socket-router";
 
 export default class MiniKenoContainerRegistry extends MultipleTableGamesContainerRegistry {
     register(appConfigs, definition, gameData) {
@@ -31,10 +33,18 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
         });
     }
 
+    registerRouters() {
+        super.registerRouters();
+        this.container.register({
+            socketRouter: asClass(SocketRouter).proxy(),
+        });
+    }
+
     registerConsumers() {
         super.registerConsumers();
-
+        
         this.container.register({
+            rebetConsumer: asClass(MiniKenoRebetConsumer).singleton(),
             userSignInConsumer: asClass(UserSignInConsumer).singleton(),
         });
     }

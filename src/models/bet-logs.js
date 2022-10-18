@@ -5,8 +5,15 @@ const schema = new mongoose.Schema({
     name: { type: String, required: true },
     time: { type: Date, required: true },
 
-    choice: { type: String, required: true },
-    amount: { type: Number, required: true },
+    big: { type: Number, default: 0 },
+    small: { type: Number, default: 0 },
+    odd: { type: Number, default: 0 },
+    even: { type: Number, default: 0 },
+    gold: { type: Number, default: 0 },
+    wood: { type: Number, default: 0 },
+    water: { type: Number, default: 0 },
+    fire: { type: Number, default: 0 },
+    earth: { type: Number, default: 0 },
 
     siteId: { type: String },
     freeBet: { type: Boolean },
@@ -16,7 +23,10 @@ const schema = new mongoose.Schema({
 
     playerId: { type: Number, required: true },
     operatorId: { type: String, required: true },
-    roundId: { type: Number, requiredd: true },
+    roundId: { type: Number, required: true },
+
+    clientSentTime: { type: Date },
+    receivedTime: { type: Date },
 });
 
 export default (modelName) => {
