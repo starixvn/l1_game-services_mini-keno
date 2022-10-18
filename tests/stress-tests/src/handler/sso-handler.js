@@ -1,23 +1,21 @@
 import { randomString } from "../helpers/random";
 import axios from "axios";
-import { userAgent } from "../constants/constants";
+import { userAgent, SystemInfo } from "../constants/constants";
 import config from "../config";
 
 export const getSSOToken = async (playerId) => {
+    const systemInfo = SystemInfo[config.system];
     const requestBody = {
         playerId: playerId,
         playerName: randomString(8),
         language: "vi-VN",
-        currency: "$US",
+        currency: systemInfo.currency,
         seq: "d,y,lumi",
         siteId: "4100300",
         siteName: "lumi",
         ip: "",
         browserUserAgent: userAgent,
-        auth: {
-            operatorId: "ONEworks1",
-            operatorSecret: "ONEworks1@20luminet&",
-        },
+        auth: systemInfo.auth,
         gameId: 0,
         domain: "example.com",
         appType: 1,

@@ -2,7 +2,6 @@
   "type": "module",
   "scripts": {
     "setup-user": "node --es-module-specifier-resolution=node ./src/runner/setup.js",
-    "reset-balance": "node --es-module-specifier-resolution=node ./src/runner/reset-balance.js",
     "start": "nodemon --es-module-specifier-resolution=node --watch ./src ./index.js"
   },
   "dependencies": {
