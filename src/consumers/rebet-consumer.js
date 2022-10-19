@@ -62,7 +62,7 @@ export default class RebetConsumer {
     convertOldBet(oldBet) {
         const result = {};
 
-        this.definition.choices((choice) => {
+        this.definition.choices.forEach((choice) => {
             if (oldBet[choice] > 0) {
                 result[choice] = oldBet[choice];
             }
