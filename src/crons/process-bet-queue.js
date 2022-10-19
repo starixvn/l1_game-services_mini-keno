@@ -1,4 +1,3 @@
-import { forEach } from "lodash";
 import { Table } from "sc-game-base";
 
 export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
@@ -103,10 +102,18 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
     }
 
     generatePlacingBetResult(player, balance, bet, rate) {
-        const { betChoice, amount } = bet;
-        const ownBet = super.generatePlacingBetResult(player, balance, bet, rate);
+        const { amount, freeBet, betChoice } = bet;
+        const { ownBets } = this.gameData.ingame[player.profile.name] || { ownBets: {} };
 
-        ownBet.ownChip = { betChoice, amount };
+        const result = {
+            ownBets,
+            endBet: amount,
+            betChoice,
+            freeBet,
+            user: { ...balance },
+        };
+
+        result.ownChip = { betChoice, amount };
 
         this.updateGameDataChips(player, bet, rate);
 
@@ -115,10 +122,10 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
         }
 
         if (bet.rebet) {
-            ownBet.rebet = bet.oldBet;
+            result.rebet = bet.oldBet;
         }
 
-        return ownBet;
+        return result;
     }
 
     updateGameDataChips(player, bet, rate) {
@@ -131,7 +138,7 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
             Object.entries(oldBet).forEach(([betChoice, amount]) => {
                 while (amount > 0) {
                     const chip = chips.find((chip) => chip <= amount);
-                    amount = amount - chip;
+                    amount -= chip;
                     super.updateGameDataChips({ betChoice, amount: chip }, rate);
                 }
             });

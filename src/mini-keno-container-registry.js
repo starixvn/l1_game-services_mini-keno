@@ -3,6 +3,7 @@ import { MultipleTableGamesContainerRegistry } from "sc-multiple-games-base";
 import MiniKenoRebetConsumer from "./consumers/rebet-consumer";
 import Bot from "./crons/bot";
 import UserSignInConsumer from "./consumers/user-signin-consumer";
+import ProcessBetQueue from "./crons/process-bet-queue";
 import SocketRouter from "./routers/socket-router";
 
 export default class MiniKenoContainerRegistry extends MultipleTableGamesContainerRegistry {
@@ -30,6 +31,7 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
 
         this.container.register({
             bot: asClass(Bot).singleton(),
+            processBetQueue: asClass(ProcessBetQueue).singleton().proxy(),
         });
     }
 
