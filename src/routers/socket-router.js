@@ -1,6 +1,6 @@
-import { Core } from "sc-game-base";
+import { MultipleGamesSocketRouter } from "sc-multiple-games-base";
 
-export default class SocketRouter extends Core.Routers.BaseSocketRouter {
+export default class SocketRouter extends MultipleGamesSocketRouter {
     constructor({
         definition,
         gameData,
