@@ -35,6 +35,7 @@ export default class RebetConsumer {
         Object.assign(payload, {
             amount: oldBet.totalAmount,
             freeBet: payload.freeBet ?? false,
+            roundId: this.gameData.roundId,
             mode: payload.m ?? this.DisplayMode.Landscape,
             receivedTime: new Date(),
         });
