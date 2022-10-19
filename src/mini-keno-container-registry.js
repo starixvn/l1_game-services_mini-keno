@@ -44,7 +44,7 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
 
     registerConsumers() {
         super.registerConsumers();
-        
+
         this.container.register({
             rebetConsumer: asClass(MiniKenoRebetConsumer).singleton(),
             userSignInConsumer: asClass(UserSignInConsumer).singleton(),

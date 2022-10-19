@@ -14,7 +14,7 @@ const bet = {
     fire: { type: Number, default: 0 },
     earth: { type: Number, default: 0 },
     totalAmount: { type: Number, default: 0 },
-    
+
     betwin: { type: Number, default: 0 },
     time: { type: Date },
     odds: { type: Object },

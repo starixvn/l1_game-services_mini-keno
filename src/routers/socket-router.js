@@ -12,6 +12,7 @@ export default class SocketRouter extends MultipleGamesSocketRouter {
         historyQuery,
         logService,
         playGamePermissionValidator,
+        allGamesHistoryQuery,
         rebetConsumer,
     }) {
         super({
@@ -25,6 +26,7 @@ export default class SocketRouter extends MultipleGamesSocketRouter {
             historyQuery,
             logService,
             playGamePermissionValidator,
+            allGamesHistoryQuery,
         });
 
         this.rebetConsumer = rebetConsumer;

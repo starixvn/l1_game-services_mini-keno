@@ -1,6 +1,6 @@
 import { helpers } from "sc-common";
 
-export default class MiniKenoRebetConsumer {
+export default class RebetConsumer {
     DisplayMode = {
         Landscape: "1",
         Portrait: "2",
@@ -14,7 +14,7 @@ export default class MiniKenoRebetConsumer {
     }
 
     async getOldBet(player) {
-        return await this.betsRepository
+        return this.betsRepository
             .findOne({
                 roundId: this.gameData.roundId - 1,
                 operatorId: player.session.operatorId,
