@@ -113,37 +113,36 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
             user: { ...balance },
         };
 
-        result.ownChip = { betChoice, amount };
-
-        this.updateGameDataChips(player, bet, rate);
-
         if (this.gameData.players[player.UID]) {
             this.gameData.players[player.UID].red = balance.red;
         }
 
         if (bet.rebet) {
-            result.rebet = bet.oldBet;
+            this.updateRebetGameDataChips(player, bet, rate, result);
+        } else {
+            result.ownChip = { betChoice, amount };
+            this.updateGameDataChips(bet, rate);
         }
 
         return result;
     }
 
-    updateGameDataChips(player, bet, rate) {
-        if (bet.rebet) {
-            const chips = this.gameData.currencyGroupGames
-                .find((x) => x.groupId.toString() === player.session.currencyGroupId)
-                .chips.map((x) => parseInt(x))
-                .sort((num1, num2) => num2 - num1);
+    updateRebetGameDataChips(player, bet, rate, placingBetResult) {
+        placingBetResult.rebet = {};
 
-            Object.entries(bet.oldBet).forEach(([betChoice, amount]) => {
-                while (amount > 0) {
-                    const chip = chips.find((chip) => chip <= amount);
-                    amount -= chip;
-                    super.updateGameDataChips({ betChoice, amount: chip }, rate);
-                }
-            });
-        } else {
-            super.updateGameDataChips(bet, rate);
-        }
+        const chips = this.gameData.currencyGroupGames
+            .find((x) => x.groupId.toString() === player.session.currencyGroupId)
+            .chips.map((x) => parseInt(x))
+            .sort((num1, num2) => num2 - num1);
+
+        Object.entries(bet.oldBet).forEach(([betChoice, amount]) => {
+            placingBetResult.rebet[betChoice] = {};
+            while (amount > 0) {
+                const chip = chips.find((chip) => chip <= amount);
+                amount -= chip;
+                this.updateGameDataChips({ betChoice, amount: chip }, rate);
+                placingBetResult.rebet[betChoice][chip] = (placingBetResult.rebet[betChoice][chip] ?? 0) + 1;
+            }
+        });
     }
 }
