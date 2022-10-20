@@ -1,15 +1,16 @@
 import { helpers } from "sc-common";
+import { Core } from "sc-game-base";
 
-export default class RebetConsumer {
+import notices from "../constants/notices";
+
+export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsumer {
     DisplayMode = {
         Landscape: "1",
         Portrait: "2",
     };
 
     constructor(definition, gameData, publisher, betsRepository) {
-        this.definition = definition;
-        this.gameData = gameData;
-        this.publisher = publisher;
+        super(definition, gameData, publisher);
         this.betsRepository = betsRepository;
     }
 
@@ -22,6 +23,58 @@ export default class RebetConsumer {
             })
             .lean()
             .exec();
+    }
+
+    composeValidationCriteria(player, oldBet, freeBet, roundId) {
+        const bettingTimeValidationCriteria = this.composeBettingTimeValidationCriteria(roundId);
+        const betAmountValidationCriteria = this.composeBetAmountValidationCriteria(player, oldBet, freeBet);
+
+        return bettingTimeValidationCriteria.concat(betAmountValidationCriteria);
+    }
+
+    composeBetAmountValidationCriteria(player, oldBet, freeBet) {
+        const settings = this.gameData.currencyGroupGames.find((x) => x.groupId.toString() === player.session.currencyGroupId);
+        const configs = this.gameData.gameConfigs;
+        const { betTracks } = this.gameData.ingame[player.profile.name] || { betTracks: {} };
+        const totalAmount = this.definition.choices.reduce((total, choice) => total + (betTracks[choice] || 0), 0) + oldBet.totalAmount;
+        const minBet = Math.max(player.profile.minBet, settings.minBet);
+        const maxBet = Math.min(player.profile.maxBet, settings.maxBet);
+        const entries = Object.entries(oldBet);
+
+        return [
+            {
+                failure: freeBet && !configs.enableFreeBet,
+                notice: this.getNoticeObj(helpers.noticeHelper.invalidBet),
+            },
+            {
+                failure: entries.some(
+                    ([choice, amount]) =>
+                        (betTracks[choice] ?? 0) + amount > Math.min(player.profile.maxBet, settings.maxBetPerChoices[choice])
+                ),
+                notice: this.getNoticeObj(notices.maxBetOfAnyChoiceReached),
+            },
+            {
+                failure: entries.some(([choice, amount]) => amount < minBet),
+                notice: this.getNoticeObj(helpers.noticeHelper.minBet, { minBet }),
+            },
+            {
+                failure: totalAmount > maxBet,
+                notice: this.getNoticeObj(helpers.noticeHelper.maxBet, { maxBet }),
+            },
+        ];
+    }
+
+    validateBetRequest(player, oldBet, freeBet, roundId) {
+        const criteria = this.composeValidationCriteria(player, oldBet, freeBet, roundId);
+        const failedCriterion = criteria.find((criterion) => criterion.failure);
+
+        if (failedCriterion) {
+            this.publisher.publishToUser(player.UID, { endBet: -1, notice: failedCriterion.notice });
+
+            return false;
+        }
+
+        return true;
     }
 
     async consume(player, payload) {
@@ -38,7 +91,13 @@ export default class RebetConsumer {
             roundId: this.gameData.roundId,
             mode: payload.m ?? this.DisplayMode.Landscape,
             receivedTime: new Date(),
+            rebet: true,
+            oldBet: this.convertOldBet(oldBet),
         });
+
+        if (!this.validateBetRequest(player, payload.oldBet, payload.freeBet, payload.roundId)) {
+            return;
+        }
 
         const { name } = player.profile;
 
@@ -57,7 +116,7 @@ export default class RebetConsumer {
         }
 
         this.adjustBetTracks(player.profile.name, oldBet);
-        this.gameData.ingame[name].betQueue.push({ player, payload: { rebet: true, oldBet: this.convertOldBet(oldBet), ...payload } });
+        this.gameData.ingame[name].betQueue.push({ player, payload });
     }
 
     convertOldBet(oldBet) {
