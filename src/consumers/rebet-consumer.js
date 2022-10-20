@@ -21,11 +21,13 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
     }
 
     async existBet(player) {
-        return this.betsRepository.exists({
-            roundId: this.gameData.roundId,
-            operatorId: player.session.operatorId,
-            playerId: player.session.playerId,
-        });
+        var inGameData = this.gameData.ingame[player.profile.name];
+
+        if (inGameData) {
+            return Object.keys(inGameData.betTracks).length > 0;
+        }
+
+        return false;
     }
 
     composeValidationCriteria(player, oldBet, freeBet, roundId) {
@@ -39,7 +41,6 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
         const settings = this.gameData.currencyGroupGames.find((x) => x.groupId.toString() === player.session.currencyGroupId);
         const configs = this.gameData.gameConfigs;
         const { betTracks } = this.gameData.ingame[player.profile.name] || { betTracks: {} };
-        const totalAmount = this.definition.choices.reduce((total, choice) => total + (betTracks[choice] || 0), 0) + oldBet.totalAmount;
         const minBet = Math.max(player.profile.minBet, settings.minBet);
         const maxBet = Math.min(player.profile.maxBet, settings.maxBet);
         const entries = Object.entries(oldBet);
@@ -61,7 +62,7 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
                 notice: this.getNoticeObj(helpers.noticeHelper.minBet, { minBet }),
             },
             {
-                failure: totalAmount > maxBet,
+                failure: oldBet.totalAmount > maxBet,
                 notice: this.getNoticeObj(helpers.noticeHelper.maxBet, { maxBet }),
             },
         ];
