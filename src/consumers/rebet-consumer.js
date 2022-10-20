@@ -4,11 +4,6 @@ import { Core } from "sc-game-base";
 import notices from "../constants/notices";
 
 export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsumer {
-    DisplayMode = {
-        Landscape: "1",
-        Portrait: "2",
-    };
-
     constructor(definition, gameData, publisher, betsRepository) {
         super(definition, gameData, publisher);
         this.betsRepository = betsRepository;
@@ -23,6 +18,14 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
             })
             .lean()
             .exec();
+    }
+
+    async existBet(player) {
+        return this.betsRepository.exists({
+            roundId: this.gameData.roundId,
+            operatorId: player.session.operatorId,
+            playerId: player.session.playerId,
+        });
     }
 
     composeValidationCriteria(player, oldBet, freeBet, roundId) {
@@ -80,7 +83,7 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
     async consume(player, payload) {
         const oldBet = await this.getOldBet(player);
 
-        if (!oldBet) {
+        if (!oldBet || (await this.existBet(player))) {
             this.publisher.publishToUser(player.UID, { endBet: -1, notice: { errorCode: helpers.noticeHelper.invalidBet } });
             return;
         }
