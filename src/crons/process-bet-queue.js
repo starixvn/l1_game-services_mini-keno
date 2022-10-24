@@ -133,10 +133,10 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
             .chips.map((x) => parseInt(x))
             .sort((num1, num2) => num2 - num1);
 
-        for (let [betChoice, betAmount] of Object.entries(bet.oldBet)) {
+        for (const [betChoice, betAmount] of Object.entries(bet.oldBet)) {
             rebetChips[betChoice] = {};
             let amount = betAmount;
-            
+
             while (amount > 0) {
                 const chip = chips.find((chip) => chip <= amount);
                 amount -= chip;
