@@ -4293,6 +4293,11 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
+jest-auto-fixture@^1.0.6:
+  version "1.0.6"
+  resolved "http://npm.lumigame.com/jest-auto-fixture/-/jest-auto-fixture-1.0.6.tgz#3e7d33314ddff6715ca131cf78c4b7f45d0090ca"
+  integrity sha512-m4O/D38RmR6p6QPGs0fpYaWo/Y08Boi946dHPdEc5C41n9nTNJrVX4TJdEKecEfKyuJ6iZg1fmRccNpagKMV2A==
+
 jest-changed-files@^26.6.2:
   version "26.6.2"
   resolved "http://npm.lumigame.com/jest-changed-files/-/jest-changed-files-26.6.2.tgz#f6198479e1cc66f22f9ae1e22acaa0b429c042d0"
@@ -6426,10 +6431,10 @@ sc-common@1.8.1:
     mongoose-long "^0.3.0"
     numeral "^2.0.6"
 
-sc-game-base@3.1.1:
-  version "3.1.1"
-  resolved "https://npm.lumigame.com/sc-game-base/-/sc-game-base-3.1.1.tgz#7885acd0754d0f21bff9822cb236641f9c079338"
-  integrity sha512-/GFT+tJNePmSA4uXsnGAwlysPbB4k4uXU+h8MwxTetcvjUoiw8f/zeuGZduN16T4xz8odymmpwA3r+ZdoXtAyA==
+sc-game-base@3.2.2:
+  version "3.2.2"
+  resolved "http://npm.lumigame.com/sc-game-base/-/sc-game-base-3.2.2.tgz#5e7fcbfd5f7646cd7337ab2b962f7b1d61dc2aed"
+  integrity sha512-DPyjPhwtC7u7KcuI/kDf9wCu75k9dNUly4f2kLTAU+UvCXj4Z1yMtYE8FakYs3pMDK3cfFpVb1YnO2sGouf3Fw==
   dependencies:
     awilix "^4.3.1"
     axios "^0.20.0"
@@ -6450,22 +6455,22 @@ sc-game-base@3.1.1:
     socket.io-msgpack-parser "^3.0.1"
     socket.io-prom-metrics "^1.0.3"
 
-sc-game-service-integration-utils@1.3.3:
-  version "1.3.3"
-  resolved "https://npm.lumigame.com/sc-game-service-integration-utils/-/sc-game-service-integration-utils-1.3.3.tgz#ae74998fb11271f535f567c879c76b08d28de8d1"
-  integrity sha512-lp7ymA0EkYSkRl8LjO72SxwOKFc0OGLtxzRA7AlPztYLYrHEPPGc/crcpunhEU1CZDIbxBOxquM9Mvczd/xnzA==
+sc-game-service-integration-utils@1.3.4:
+  version "1.3.4"
+  resolved "http://npm.lumigame.com/sc-game-service-integration-utils/-/sc-game-service-integration-utils-1.3.4.tgz#1f6fdc9aa4a73b589b89cd08bc3a732d0fab0764"
+  integrity sha512-erWvryUTGpU80sorxFpGg5BSHpccAaxx2V51q5ZYh6sSeKpUwXM7oswVTvsG2UFE5hy7DKVAD9B2TOiNPouxdQ==
   dependencies:
     lodash.matches "^4.6.0"
     nock "^13.2.1"
-    sc-game-base "3.1.1"
+    sc-game-base "3.2.2"
     socket.io-client "^4.4.0"
 
-sc-multiple-games-base@1.8.4:
-  version "1.8.4"
-  resolved "http://npm.lumigame.com/sc-multiple-games-base/-/sc-multiple-games-base-1.8.4.tgz#dcc147f386596aa2087e5fb1c1b5dc03a6992922"
-  integrity sha512-x/mLfnD8M2BdYf8BX1nzjsBypcq3TKH+ixHGqY57rYsj+YgRMe2Cutw85B2gD74ZJ2lCbyKeIRf2MYtK83IjvA==
+sc-multiple-games-base@1.8.6:
+  version "1.8.6"
+  resolved "http://npm.lumigame.com/sc-multiple-games-base/-/sc-multiple-games-base-1.8.6.tgz#ba24f2c3e9a125293864c4bed21992aa0263c685"
+  integrity sha512-2u8huyS/8IMSHGeLqU5KBeN9EjDNdKECLgjrTZ2sVSE3p4q2I4oph0WRSVEUjMoxktqoC3cJ1Cv19GD7pbpgBQ==
   dependencies:
-    sc-game-base "3.1.1"
+    sc-game-base "3.2.2"
 
 semver-compare@^1.0.0:
   version "1.0.0"

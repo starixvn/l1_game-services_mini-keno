@@ -21,7 +21,7 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
     }
 
     async existBet(player) {
-        var inGameData = this.gameData.ingame[player.profile.name];
+        const inGameData = this.gameData.ingame[player.profile.name];
 
         if (inGameData) {
             return Object.keys(inGameData.betTracks).length > 0;
@@ -119,7 +119,7 @@ export default class RebetConsumer extends Core.BaseEventConsumers.PlaceBetConsu
             this.gameData.ingame[name] = newPlayer;
         }
 
-        this.adjustBetTracks(player.profile.name, oldBet);
+        this.adjustBetTracks(player.profile.name, payload.oldBet);
         this.gameData.ingame[name].betQueue.push({ player, payload });
     }
 

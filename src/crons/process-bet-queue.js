@@ -15,8 +15,6 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
             uid: player.UID,
             name: player.profile.name,
             time: new Date(),
-            choice: bet.betChoice,
-            amount: bet.amount,
             freeBet: bet.freeBet,
             roundId,
             clientSentTime: bet.clientSentTime,
@@ -118,7 +116,7 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
         }
 
         if (bet.rebet) {
-            this.updateRebetGameDataChips(player, bet, rate, result);
+            result.rebet = this.updateRebetGameDataChips(player, bet, rate);
         } else {
             result.ownChip = { betChoice, amount };
             this.updateGameDataChips(bet, rate);
@@ -127,22 +125,24 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
         return result;
     }
 
-    updateRebetGameDataChips(player, bet, rate, placingBetResult) {
-        placingBetResult.rebet = {};
+    updateRebetGameDataChips(player, bet, rate) {
+        const rebetChips = {};
 
         const chips = this.gameData.currencyGroupGames
             .find((x) => x.groupId.toString() === player.session.currencyGroupId)
             .chips.map((x) => parseInt(x))
             .sort((num1, num2) => num2 - num1);
 
-        Object.entries(bet.oldBet).forEach(([betChoice, amount]) => {
-            placingBetResult.rebet[betChoice] = {};
+        for (let [betChoice, amount] of Object.entries(bet.oldBet)) {
+            rebetChips[betChoice] = {};
             while (amount > 0) {
                 const chip = chips.find((chip) => chip <= amount);
                 amount -= chip;
                 this.updateGameDataChips({ betChoice, amount: chip }, rate);
-                placingBetResult.rebet[betChoice][chip] = (placingBetResult.rebet[betChoice][chip] ?? 0) + 1;
+                rebetChips[betChoice][chip] = (rebetChips[betChoice][chip] ?? 0) + 1;
             }
-        });
+        }
+
+        return rebetChips;
     }
 }
