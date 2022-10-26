@@ -2125,7 +2125,7 @@ atob@^2.1.2:
   resolved "http://npm.lumigame.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-awilix@^4.3.1:
+awilix@^4.3.1, awilix@^4.3.4:
   version "4.3.4"
   resolved "http://npm.lumigame.com/awilix/-/awilix-4.3.4.tgz#aeecc662efa96256981af3bc6243eb201c8b4a4f"
   integrity sha512-NgRwUPxUnoK+OTRa2fXcRQVFPOPQXlwCN1FJPkhO3IHKQJHokhdVpDfgz9L3VZTcA1iSaOFE3N/Q/5P7lIDqig==
@@ -6471,6 +6471,13 @@ sc-multiple-games-base@1.8.6:
   integrity sha512-2u8huyS/8IMSHGeLqU5KBeN9EjDNdKECLgjrTZ2sVSE3p4q2I4oph0WRSVEUjMoxktqoC3cJ1Cv19GD7pbpgBQ==
   dependencies:
     sc-game-base "3.2.2"
+
+sc-rebet-mode@1.0.0-beta.5:
+  version "1.0.0-beta.5"
+  resolved "http://npm.lumigame.com/sc-rebet-mode/-/sc-rebet-mode-1.0.0-beta.5.tgz#ed6ed61ba16eab2b722852f796480b5dcec9d1b0"
+  integrity sha512-TpGYZfI8be+KW0V20awppXdXYJHjZV0gI0nM+BKK/oRahBZFoSsTT1bCtIAD/WYkcCthNjX2DGeAO/yCkJ2LZg==
+  dependencies:
+    awilix "^4.3.4"
 
 semver-compare@^1.0.0:
   version "1.0.0"
