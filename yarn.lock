@@ -6472,10 +6472,10 @@ sc-multiple-games-base@1.8.6:
   dependencies:
     sc-game-base "3.2.2"
 
-sc-rebet-mode@1.0.0-beta.7:
-  version "1.0.0-beta.7"
-  resolved "http://npm.lumigame.com/sc-rebet-mode/-/sc-rebet-mode-1.0.0-beta.7.tgz#4f4617b5a428e6c816ad65e5a3ff4f725419866e"
-  integrity sha512-0tgABRfEr12v6XMWk+Xle8z8sZVL/O6ZPQWc1ssfX3138ndJo7Ffj+ZgGcr8BuobNlm74jfrG0iKzHkRjFh7Hw==
+sc-rebet-mode@1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "http://npm.lumigame.com/sc-rebet-mode/-/sc-rebet-mode-1.0.0-beta.8.tgz#0fc90dc63e41b6dc76a41e63b66cb52e769ed7f0"
+  integrity sha512-PveP8SXe6rM69zgPJPiArTjEjf/dzFwTqv9GMLdqZ0sm3tIZS+h21FjNwpIVFOKH+KgNPzgBl6SA1SFagxTGBw==
   dependencies:
     awilix "^4.3.4"
 
