@@ -4,6 +4,7 @@ import Bot from "./crons/bot";
 import UserSignInConsumer from "./consumers/user-signin-consumer";
 import { RebetContainerRegistry } from "sc-rebet-mode";
 import { Table } from "sc-game-base";
+import GameCron from "./crons/game-cron";
 
 export default class MiniKenoContainerRegistry extends MultipleTableGamesContainerRegistry {
     register(appConfigs, definition, gameData) {
@@ -34,6 +35,7 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
 
         this.container.register({
             bot: asClass(Bot).singleton(),
+            gameCron: asClass(GameCron).singleton().proxy(),
         });
     }
 
