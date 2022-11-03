@@ -15,6 +15,8 @@ const schema = new mongoose.Schema({
     fire: { type: Number, default: 0 },
     earth: { type: Number, default: 0 },
 
+    rebet: { type: Boolean, default: false },
+
     siteId: { type: String },
     freeBet: { type: Boolean },
 
