@@ -78,7 +78,7 @@ export default class ProcessBetQueue extends Table.Crons.TableProcessBetQueue {
             roundId,
         };
         const existingBetFilter = { uid: player.UID, roundId, freeBet: bet.freeBet };
-        const existingBetIncrement = {
+        let existingBetIncrement = {
             totalAmount: bet.amount,
         };
 
