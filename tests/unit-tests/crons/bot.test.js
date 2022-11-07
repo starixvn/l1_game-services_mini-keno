@@ -2,9 +2,9 @@ import { stub, stubMongoose } from "jest-micro-auto-stub";
 import mongoose from "mongoose";
 import { Core, Table } from "sc-game-base";
 
-import constants from "../../src/constants";
-import Bot from "../../src/crons/bot";
-import gameSettings from "../../src/game-settings";
+import constants from "../../../src/constants";
+import Bot from "../../../src/crons/bot";
+import gameSettings from "../../../src/game-settings";
 
 const definition = new Table.TableGameDefinition(gameSettings[0]);
 const gameData = new Table.TableGameData(0);

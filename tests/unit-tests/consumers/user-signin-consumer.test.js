@@ -1,4 +1,4 @@
-import UserSignInConsumer from "../../src/consumers/user-signin-consumer";
+import UserSignInConsumer from "../../../src/consumers/user-signin-consumer";
 import { UserSignInConsumer as BaseUserSignInConsumer } from "sc-game-base/src/core/event-consumers";
 import { Systems } from "sc-game-base/src/constants";
 
