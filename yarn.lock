@@ -2972,7 +2972,7 @@
   dependencies:
     "cssom" "~0.3.6"
 
-"d3-array@^3.2.0":
+"d3-array@3.2.0":
   "integrity" "sha512-3yXFQo0oG3QCxbF06rMPFyGRMGJNS7NvsV1+2joOjbBE+9xvWQ8+GcMJAjRCzw06zQ3/arXeJgbPYcjUCuC+3g=="
   "resolved" "http://npm.lumigame.com/d3-array/-/d3-array-3.2.0.tgz"
   "version" "3.2.0"
@@ -3517,11 +3517,6 @@
   "integrity" "sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc="
   "resolved" "http://npm.lumigame.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   "version" "2.0.6"
-
-"fast-safe-stringify@^2.1.1":
-  "integrity" "sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA=="
-  "resolved" "http://npm.lumigame.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz"
-  "version" "2.1.1"
 
 "fb-watchman@^2.0.0":
   "integrity" "sha512-DkPJKQeY6kKwmuMretBhr7G6Vodr7bFwDYTXIkfG1gjvNpaxBTQV3PbXg6bR1c1UP4jPOX0jHUbbHANL9vRjVg=="
@@ -4367,7 +4362,7 @@
     "html-escaper" "^2.0.0"
     "istanbul-lib-report" "^3.0.0"
 
-"jest-auto-fixture@^1.0.6":
+"jest-auto-fixture@1.0.6":
   "integrity" "sha512-m4O/D38RmR6p6QPGs0fpYaWo/Y08Boi946dHPdEc5C41n9nTNJrVX4TJdEKecEfKyuJ6iZg1fmRccNpagKMV2A=="
   "resolved" "http://npm.lumigame.com/jest-auto-fixture/-/jest-auto-fixture-1.0.6.tgz"
   "version" "1.0.6"
@@ -4532,12 +4527,11 @@
   optionalDependencies:
     "fsevents" "^2.1.2"
 
-"jest-html-reporters@^3.0.10":
-  "integrity" "sha512-Q5fZWU9lYBvq2PSz+6vtDwKIRBm4Na3pb/0UEt92pkTDCoO5eclV8r0/2rRJrQ8Gz4LDaJYxFyFmYDaVYEc1fQ=="
-  "resolved" "http://npm.lumigame.com/jest-html-reporters/-/jest-html-reporters-3.0.11.tgz"
-  "version" "3.0.11"
+"jest-html-reporters@3.0.10":
+  "integrity" "sha512-tkLqYadTi0wGwiFkAUv3cV+IcmdE1YeJC/+BOzutVNeudRZk34GFPGYAKBFVYN6HyJGLaEG0TTf5WCySxwAB5g=="
+  "resolved" "http://npm.lumigame.com/jest-html-reporters/-/jest-html-reporters-3.0.10.tgz"
+  "version" "3.0.10"
   dependencies:
-    "fast-safe-stringify" "^2.1.1"
     "fs-extra" "^9.0.1"
     "open" "^8.0.3"
 
@@ -5171,7 +5165,7 @@
   "resolved" "http://npm.lumigame.com/lodash.once/-/lodash.once-4.1.1.tgz"
   "version" "4.1.1"
 
-"lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.21", "lodash@^4.7.0":
+"lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.21", "lodash@^4.7.0", "lodash@4.17.21":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "http://npm.lumigame.com/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -6159,7 +6153,7 @@
   "resolved" "http://npm.lumigame.com/quick-lru/-/quick-lru-5.1.1.tgz"
   "version" "5.1.1"
 
-"random-js@^2.1.0":
+"random-js@2.1.0":
   "integrity" "sha512-CRUyWmnzmZBA7RZSVGq0xMqmgCyPPxbiKNLFA5ud7KenojVX2s7Gv+V7eB52beKTPGxWRnVZ7D/tCIgYJJ8vNQ=="
   "resolved" "http://npm.lumigame.com/random-js/-/random-js-2.1.0.tgz"
   "version" "2.1.0"
