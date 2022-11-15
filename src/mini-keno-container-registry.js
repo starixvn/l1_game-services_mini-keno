@@ -5,6 +5,7 @@ import UserSignInConsumer from "./consumers/user-signin-consumer";
 import { RebetContainerRegistry } from "sc-rebet-mode";
 import GameCron from "./crons/game-cron";
 import ProcessBetQueue from "./crons/process-bet-queue";
+import PlaceBetPublisher from "./publishers/place-bet-publisher";
 
 export default class MiniKenoContainerRegistry extends MultipleTableGamesContainerRegistry {
     register(appConfigs, definition, gameData) {
@@ -12,9 +13,7 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
 
         this.registerRepositories(definition.repositories);
 
-        this.container.register(
-            new RebetContainerRegistry().register(MultipleGamesSocketRouter)
-        );
+        this.container.register(new RebetContainerRegistry().register(MultipleGamesSocketRouter));
 
         return this.container;
     }
@@ -45,6 +44,14 @@ export default class MiniKenoContainerRegistry extends MultipleTableGamesContain
 
         this.container.register({
             userSignInConsumer: asClass(UserSignInConsumer).singleton(),
+        });
+    }
+
+    registerPublishers() {
+        super.registerPublishers();
+
+        this.container.register({
+            placeBetPublisher: asClass(PlaceBetPublisher).singleton(),
         });
     }
 }
