@@ -2,9 +2,9 @@ import { hedgeBetGroups } from "../../src/game-settings";
 import getSettlementResult from "../../src/settlementRules";
 import generateResult from "../../src/shuffleNumbers";
 
-describe("Mini keno - Running 100000 rounds  ", () => {
+describe("Mini keno - Running 10000 rounds  ", () => {
     it.each([1, 2, 3])("Mode %d", (mode) => {
-        const totalRounds = 100_000;
+        const totalRounds = 10_000;
         const streaks = {
             big: {},
             small: {},
@@ -57,6 +57,10 @@ describe("Mini keno - Running 100000 rounds  ", () => {
             }, {});
         }
 
+        expect(stats.odd.ratio).toBeGreaterThanOrEqual(0.49);
+        expect(stats.even.ratio).toBeGreaterThanOrEqual(0.49);
+        expect(stats.big.ratio).toBeGreaterThanOrEqual(0.49);
+        expect(stats.small.ratio).toBeGreaterThanOrEqual(0.49);
         console.log(`======== Run ${totalRounds} rounds in mode ${mode} ========`);
         console.log(stats);
         console.log(`Longest streaks (>=${longestStreak}) in mode ${mode} : `);
