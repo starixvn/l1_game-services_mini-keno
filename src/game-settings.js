@@ -4,11 +4,11 @@ import {
     bets as getBetRepository,
     tempBets as getTempBetRepository,
     result as getResultRepository,
+    allGamesHistoriesModel
 } from "./models";
 import SettlementRules from "./settlementRules";
 import generateResult from "./shuffleNumbers";
 import { generateRawResultForHash } from "./result-helper";
-import { allGamesHistoriesModel } from "sc-multiple-games-base";
 
 const choices = ["big", "small", "odd", "even", "gold", "wood", "water", "fire", "earth"];
 const choicesMapper = { big: 1, small: 2, odd: 3, even: 4, gold: 5, wood: 6, water: 7, fire: 6, earth: 7 };
