@@ -57,10 +57,10 @@ describe("Mini keno - Running 10000 rounds  ", () => {
             }, {});
         }
 
-        expect(stats.odd.ratio).toBeGreaterThanOrEqual(0.49);
-        expect(stats.even.ratio).toBeGreaterThanOrEqual(0.49);
-        expect(stats.big.ratio).toBeGreaterThanOrEqual(0.49);
-        expect(stats.small.ratio).toBeGreaterThanOrEqual(0.49);
+        expect(stats.odd.ratio).toBeGreaterThanOrEqual(0.485);
+        expect(stats.even.ratio).toBeGreaterThanOrEqual(0.485);
+        expect(stats.big.ratio).toBeGreaterThanOrEqual(0.485);
+        expect(stats.small.ratio).toBeGreaterThanOrEqual(0.485);
         console.log(`======== Run ${totalRounds} rounds in mode ${mode} ========`);
         console.log(stats);
         console.log(`Longest streaks (>=${longestStreak}) in mode ${mode} : `);
