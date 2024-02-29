@@ -37,7 +37,7 @@ const createViews = async () => {
             {
                 $project: {
                     _id: 0,
-                    playerId: "$local.memberId",
+                    playerId: { $toString: "$local.memberId"},
                     operatorId: {
                         $ifNull: [
                             {
