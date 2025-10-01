@@ -32,7 +32,9 @@
         "sc-game-base": "4.1.0",
         "sc-base-apis": "1.18.2",
         "sc-base-database": "1.11.1",
-        "mongoose": "5.13.20"
+        "mongoose": "6.13.6",
+        "form-data": "4.0.4",
+        "sc-common": "2.0.0"
     },
     "devDependencies": {
         "@babel/core": "7.24.5",
